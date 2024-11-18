@@ -1,0 +1,138 @@
+This lecture is related to React Class # 02 
+It includes (What are Components, how to pass and receive Props, what is JSX, What is React.Fragment, fragment or <>, What is inline styling, How to do condional styling in react, What are Modules and why we use it ? What are dumb components?, How React works (working mechanism of react)? Difference b/w a function and a REACT COMPONENT
+
+---------------------------------------------------------------------------ASSESTS FOLDER--------------------------------------------------------------------------
+SRC ka hamary pas main folder hota hay  uss my 1 assests ka folder hota hay jesy html css js my ham aik assests ka folder banaty thy uss my images ka aik or folder banaty thy or phr tamam images uss assests ky sub folder images my daal dety thy isi trha assests ka folder yahaan react my bhe hamary pas hota hay jis my ham images ka fonts ka sub folder bana skty han or iss ky ilawa bhe chezo ka folder bana skty han.
+
+--------------------------------------------------------------------------MAIN.JSX vs INDEX.HTML---------------------------------------------------------------------
+*)IF ARE CREATING PROJECT BY (CREATE VITE PROJECT) THEN OUT ROOT FILE IS MAIN.JSX, BUT IF ARE CREATING PROJECT BY CREATE REACT APP SO THEN OUR ROOT FILE WILL BE INDEX.JS.
+Jo hamary pas 1 main.jsx ki file hoti hay or 1 aik INDEX.html ki file banaye hoti hay uss html ki file my hamary pas jo main div hota hay uss ki id root hoti hay yani uss root element ko ham get/access karty han id selector ky through iss MAIN.JSX ki file my or phr pori ki pori application ko render karwa rahy hoty han.
+CONCLUSION: index.html ky root element ko access karty han MAIN .JSX my or phr access karny ky baad ham pori application ko iss(MAIN.JSX) my render karwaty han.
+<React.strictMode>
+<App/>                       // YAH JO <APP/> COMPONENT HAY ISS KA NAME KUCH BHE RAKH SKTY HAN OR YAH INDEX.HTML SY UTHA KAR LAA RAHY HOTY HAN
+<React.strictMode/>
+<React.strictMode>: Best coding practise ky liye yah ham use karein gy. Koshish karen development mode my iss ko enable hi rakhen agar remove kar bhe dein to koi farq nahe pary ga. Apni application ky component ko my sirf MAIN.JSX my rakhen gy kiu ky iss my ham sirf apni application render karaty han MAIN.JSX my. 
+Yah wohi same cheez hy jo ham JS my use karty thy 'use strict' mode taky agar kisi varible ko without let var const initialize karen to woh hamey error dy day isi trha isi trha yah hamey good code practise likhnay my help karta hay taky ham koi iss trha ki mistakes na kar saken.
+ALWAYS REMEMBER:
+ISS REACT KY STRICT MODE KY ANDAR MY JO BHE CHEEZ RAKHEN GY WOH 2 BAR RENDER HOGI BESHAK 1 HI BAR HI KIU NA PASS KIYA HO YANI JO APP KA COMPONENT ISS KY ANDAR RAKHA HAY TO YAH <APP/> WALA COMPONENET 2 BAR RENDER HOGA BESHAK MY ISY 1 BAR HI PASS KARO. 1 BAR STRICT MODE KY LIYE RENDER HOGA 2ND TIME NORMAL <APP/> COMPONENT KHUD BHE RENDER HOGA. Basically strict mode hamey duplicate kar ky dekha raha hota hay har component ko.
+<React.strictMode>  
+<App/>                       
+<React.strictMode/>
+
+------------------------------------------MAIN POINT TO REMEMBER + WORKING MECHANISM THAT HOW REACT WORKS AND SHOW UI-----------------------------------------------
+MAIN.JSX + INDEX.HTML IN FILES KO HAM USE NAHE KAREN GY COMPONENTS KI CALLING KY LIYE. MAIN.JSX MY SIRF AIK <APP/> KA COMPONENET HI CALL KAREN GY OR BAKI COMPONENTS JO BHE HAM BANAYEN GY USY APP.JSX KY ANDAR RAKHEN GY NAA KY MAIN.JSX KY. KIU KY ROOT ELEMENT KO HAM INDEX.HTML(DIV ki id=root) SY GET/NIKAL KAR KY MAIN.JSX KY ANDAR TARGET KARNY KY BAAD VIRTUAL DOM KO USE KARTY HOWY USS KY SATH (CREATEROOT) METHOD KA USE KARTY HOWY ROOT ELEMENT YANI (ID=ROOT) KO PARSE KAREN GY OR PHR RENDER METHOD KO CALL KARTY HOWY APNAI PORI <APP/> COMPONENT KO ISS KY ANDAR PASS KAR DEIN GY. TO ISS SY HOGA YAH KY JO BHE <APP/> COMPONENT KY ANDAR CODE HOGA REACT USY ROOT ELEMENT <DIV ID = "ROOT">(INDEX.HTML) KY ANDAR LAA KAR ADD/INSERT/APPEND KAR DY GA OR WOH HAMEY UI PAR SHOW HOGY GA . 
+
+
+-----------------INDEX.css----------------------
+main.jsx ki stylying hamesha index.css my hi karen gy 
+
+-----------------------------------------------------------------------WHY WE USE MODULES ?--------------------------------------------------------------------------
+JavaScript modules are used to split your code into smaller, more manageable pieces rather than keeping it in a single file and moving those pieces to other files or projects. Modules can contain functions, variables, and objects that perform specific functions
+ADANTAGE OF USING MODULE IN JS OR REACT 
+1) MODULES ham use karty han taky ham apnay code ko multiple small chunks my tor saken taky code ki readiblity increase hogy kiu ky agar koi 20000 line ka code hay or agar koi issue aagya to to bar bar code ko uper scroll karny my time zaya hota hay to kiu na har module sy related alag file bana kar code kar liye gy jesy header footer cart wagera... iss sy fiada yah hoga ky code ki readblity bhe barh gy gi or code ko debug karna bhe assan hogy ga. 
+2) Module ka aik or faida yah bhe hay ky ham kisi code ko bar bar nahe karna pary ga kiu ky agar kisi file my phely sy code kar rakha hay or wohi code hamey dobara use karna hay to ham usy DEFAULT/NAMING ky through export karwa lein gy.
+3) Yaad rahy ky sirf function ko hi nahe balky object arrays yah kuch or bhe ho sab ko export or import kiya jaa skta hay.
+---------------------------------------------------------------------COMPONENTS IN REACT JS--------------------------------------------------------------------------
+"Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML."
+"Components come in two types, Class components and Function components, in this tutorial we will concentrate on Function components."
+POINTS TO REMEMBER BEFORE MAKING A COMPONENT IN REACT 
+1) Componenet ka name hamesha capital letter sy start hota hay.
+2) React my component yah to HTML return karwata hay yah phr NULL return karwaye ga (yani meri UI par kuch show na ho to NULL ka use karo ga inside return block). 
+
+HAM SELF CLOSING TAG HI USE KAREIN GY COMPONENTS KY LIYE AGAR USS KY ANDAR HAMEY KUCH LIKHNA NA HO FOR EXAMPLE: <FOOTER/> OR AGAR COMPONENT KY TAG KY ANDAR KUCH ELEMENTS USE KARNY HO YAH LIKHNAY HON TO HI HAM OPENING OR CLOSING DONO TAGS KA USE KAREIN GY FOR EXAMPLE: <FOOTER> "HELLO I AM FOOTER <FOOTER/>
+
+Difference b/w a function and a REACT COMPONENT
+1) React jo hamary pas hay yah completely component base hoti hay. Jab bhe ham VITE/REACT ky through project create karty han to uss my jo confirgation install ki huwi han to uss ky andar hamary pas WEBPACK & WEBBEL wagera jesi chezain hamary pas pechy pari hoti hay jo iss kaam ko understand karti hay ky yah jo function ham ny create karwaya hy yah component hay yah normal function iss trha check karti han ky un ky kuch iss trha ki settings howi hoti han ky jesy ham capital letter sy funtion name ko initailize karwaty han  yah smjh jati han ky yah 1 componenet hay naaky function kiu ky function ka 1st letter small hota hay.
+2) Component or JS function my main difference yah hota hay ky component hamehsa hamey JSX return karta hay.
+--------------------------------------------------------------------------WHAT IS JSX IN REACT ?---------------------------------------------------------------------
+JSX allows us to write HTML in React.
+JSX makes it easier to write and add HTML in React.
+JSX kiya hay? ==> JS ki file ky andar agar ham apni koi HTML return karwa rahy han to woh hamari JSX kehlati hay yani (JAVASCRIPT XML)
+JSX ky andar ham apni HTML bhe likh sakty han or ussi HTML ky andar apni JS bhe likh sakty han
+JSX allows us to write HTML elements in JavaScript and place them in the DOM without any createElement()  and/or appendChild() methods.
+JSX converts HTML tags into react elements.
+
+-------------------------------------------------------------------WHAT IS DUMP COMPONENTS IN REACT-------------------------------------------------------------------
+THE COMPONENTS THAT ARE NOT USING ANY STATES OR PROPS
+AISY component jin my STATE yah phr PROPS sy related koi kaam nahe ho raha woh DUMP components kehlaty han.
+
+-----------------------------------------------------------------------INLINE STYLING IN CSS-------------------------------------------------------------------------
+REACT ky andar 'style' jab bhe add karein gy to woh as a OBJECT properties ki trha jayen gi. Yani REACT my style as a JS object ki trha jayen gy.
+Syntax for inline stling in REACT <div style = {{backgroudColor: "red"}}> "hello" <div/>
+1st {} karli bracket isi liye use karty han ky REACT my JS ka code likhnay ky liye {} brackets ka use karty han ab ap sochain gy yah JS CODE kahaan sy aagayi ham to CSS likh rahy thy to yaad rahy ky yahaan par INLINE CSS as a JS OBJECT behave kary gi isi liye 1st {} JS ky liye or 2nd {} bracket ky andar styling(CSS) pass karein gy as an object format may.
+-----------------------------------------------------------------------WHAT ARE PROPS IN REACT ?----------------------------------------------------------------------
+1) Props are arguments passed into React components. (JS MY JO FUNCTIONS MY ARUGUMENTS PASS KARTY THY UNHY REACT MY PROPS BOLTY HAN).
+2) Props are also how you pass data from one component to another, as parameters.
+3) Props are passed to components via HTML attributes. (HTML MY ELEMENT KY ANDAR JO PROPERTIES/ATTRIBUTES USE KARTY THY UNHAY REACT MY PROPS BOTLY HAN).
+EXAMPLE: HTML my <img> TAG attribute 
+						**********************HOW TO PASS DATA IN PROPS ?***************************
+1) PROPS ky andar har type ka data pass kar skty han chahyeen woh STRING, NUMER BOLEAN ARRAY OBJECT ... etc kuch bhe ho pass kiya jaa skta hay. Yaad rahy ky Jab bhe props my data pass karein gy to karli bracket {} ky andar pass karein gy except STRING. STRING ko karli bracket my pass karny ki zarorat nahe.
+2) Yaad rahy ky array ko or object ko direct UI par RENDER/SHOW nahe karwa sakty error aye ga to phr kesy show karyaen gy ? 
+Ans) Simple convert the array or object into string by using {JSON.STRINGIFY.PROPS.LOCATION}.
+3) Baki data types ko kiu nahe string my change karwaty jesy number yah boolean ko sirf OBJECT/ARRAY ko hi kiu karwaty han ?
+Ans) Jab bhe ham props my number/boolean pass karty han to JS khudi TYPE CASTING kar ky unhay string my change kar deta hay. Lekin OBJECT OR ARRAY ko TYPE CASTING sy 
+change nahe karta hamey OBJECT/ARRAY KO EXPLICITY khud change karwana parta hay by using JSON.stringify() method ky through.
+
+						***********************WHY WE USE PROPS ? **********************************
+APNAY COMPONETS MY DYNAMICALLY DATA PASS KARNY KY LIYE HAM PROPS KO USE KARTY HAN. AGAR KOI DUMP COMPONENET HAY TO PHR HAMEY PROPS PASS KARNY KI KOI ZARORAT NAHE
+						********************************REMEMBER:************************************
+Q) PROPS my agar kuch nahe pass karo gy to kia mily ga ?
+ANS) PROPS my agar kuch nahe pass karo gy to empty object {} milta hay.
+Q) PROPS MY AGAR BOOLEAN VALUE PASS KAR KY KISI COMPONENT  KO DEIN GY TO WOH USE RENDER KARWAYE GA YAH NAHE?
+ANS) PROPS MY AGAR BOOLEAN VALUE PASS KAR KY KISI COMPONENT KO DEIN GY TO WOH USE RENDER NAHE KARWAYE. FOR EXAMPLE MY NY AIK BOOLEAN PROPS PASS KIYA ............
+<Greeting isAdult = {false}/> ISS MY ISADULT KA BOOLEAN PROPS PAS KAR RAHA HON GREETING COMPONENT KO TO YAH DIRECTLY RENDER UI PAR NAHE HOGA JESY STRING NUMBER ARRAYS YAH OBJECT RENDER HOJATY THY TO ISY RENDER KARWANAY KY LIYE MY "CONDITIONAL RENDERING" KA USE KARO GA. BUT HOW ?
+SOLUTION : BY USING TERNARY OPERATOR
+Ham check karwain gy ky agar props sy hamey 'isAdult' key my TRUE milta hay to 'ADULT' render karwa do or agar 'FALSE' milta hay to 'CHILD' render karwa do.
+         <h4>And I am {props.isAdult ? "Adult" : "Child"}</h4>
+ I
+
+
+---------------------------------------------------------------------- REACT FRAGMENT/FRAGMENT/<> --------------------------------------------------------------------
+YAAD HO GA AP KO KY JAB HAM NY JS PARHI THE USS MY JAB HAM FUNCTION KO USE KARTY THY OR UN MY JAB RETURN STATEMENT KA USE KARTY THY TO AIK BAAT HAM NY NOTE KI THE KY AP FUNCTION MY RETURN STATEMENT SY AT A TIME 1 HI STATEMENT KO RETURN KARWA SKTY HAN TO YAHAAN REACT MY HAM JSX RETURN KARWA RAHY HAN TO YAAD RAHY KY HAM BHE AT A TIME 1 HI ELEMENT RETURN KARWA SKTY HAN. FOR EXAMPLE:  <h4>Assalam o alikum I am {props.name} and my age is {props.age} </h4>
+						*************************** PROBLEMS WE COULD FACE ***************************
+Q) LEKIN AGAR HAMEY ZIADA ELEMENTS RETURNS KARWANY PAR JAYEN TO HAM KIA KAREN GY ? FOR EXAMPLE KUCH ISS TRHA TO 
+        <h4>Assalam o alikum I am {props.name} and my age is {props.age} </h4>
+        <P>Hello buddy</P>
+        <p>I am from karachi </p>
+        <h1>OK BYE ...</h1>
+SOLUTION # 01
+ANS) LEKIN AGAR HAMEY ZIADA ELEMENTS RETURNS KARWANY PAR JAYEN TO HAM UN TAMAM ELEMENTS KO <DIV> <DIV/> KY ANDAR WRAP KAR DEIN GY 
+        <div>
+        <h4>Assalam o alikum I am {props.name} and my age is {props.age} </h4>
+        <P>Hello buddy</P>
+        <p>I am from karachi </p>
+        <h1>OK BYE ...</h1>
+        </div>
+SOLUTION # 02 (May be due to using DIV this might create extra nodes and takes extra white spaces on the UI. HOW SHOULD I AVOID EXTRA NODES OR WHITE SPACE ON UI ?
+       	-------By using Fragment-------
+	 <>
+        <h4>Assalam o alikum I am {props.name} and my age is {props.age} </h4>
+        <p>Hello buddy</p>
+        <p>I am from karachi </p>
+        <h1>OK BYE ...</h1>
+        </>
+
+SOLUTION # 03 (To use this method always remember to import ==> import React from 'react' )
+ -----------------By wrapping inside a <React.Fragment> </React.Fragment>-------------------
+/* <React.Fragment>
+<h4>Assalam o alikum I am {props.name} and my age is {props.age} </h4>
+<p>Hello buddy</p>
+<p>I am from karachi </p>
+<h1>OK BYE ...</h1>
+</React.Fragment> */
+
+SOLUTION # 04 (To use this method always remember to import ==> import { Fragment } from 'react' )
+-----------------By wrapping inside a <Fragment> </Fragment>-------------------
+<Fragment>
+<h4>Assalam o alikum I am {props.name} and my age is {props.age} </h4>
+<p>Hello buddy</p>
+<p>I am from karachi </p>
+<h1>OK BYE ...</h1>
+</Fragment>
+
+// NOTE: ALWAYS USE (METHOD # 02) <> </> this method. Because it is a short cut method it does not require any import 
+// like method 3 ( <React.Fragment></React.FragmentFragment>) and method 4 ( <Fragment></Fragment>). 
+
+-------------------------------------CONDITIONAL RENDERING-----------------------------------------
+Jab koi kaam ham condionally karwana chahty hon to uss condional rendereing bolty han.
+Done in VS CODE.
