@@ -1,0 +1,91 @@
+----------------------------------------------------------------- WHAT ARE HOOKS ? --------------------------------------------------------------
+Hooks are new addition in React 16.8. They let you use state and other React features without writing a class component.
+HOOKS ziada kuch nahe aik function hay jis ham call kar rahy hoty han or uss function ki apni kuch properties hoti han jo woh perform kar raha hota hay.
+Hook Rules
+There are 3 rules for hooks:
+Hooks can only be called inside React function components.
+Hooks can only be called at the top level of a component.
+Hooks cannot be conditional
+-------------------------------------WHY HOOKS INTRODUCED IN REACT JAB SARA KAAM CLASS COMPONENTS HO RAHA THA ? --------------------------------
+Dekho aj ham FUNCTION BASED COMPONENTS parh rahay han lekin jab React ayi the uss time hamary pas FUNCTION BASED COMPONENTS to howa karty thy
+lekin un FUNCTION BASED COMPONENET my ham koi bhe aisa kaam nahe kar skty thy jis my STATE MANAGNMENT ho rahe ho.
+**************************************THINGS THAT FUNCTION BASED COMPONENTS LACKS WHEN REACT WAS INTRODUCED************************************
+1) STATE MANAGNMENT sy mltb STATE use ho rahe ho. For example: my click kar raha hon btn par to mera count increase ho raha ho yah phr click par count decrease ho raha ho. To phely ham FUNCTION BASED COMPONENT my yah chezain perform nahe kar skty thy.
+2) Iss ky ilaawa hamary pas or bhe kuch chezain the jesy life cycle method han to woh bhe hamary pas FUNCTION BASED COMPONENTS my nahe thy.
+__________________________________________________________________________________________________________________________________________________
+Phely ham sirf FUNCTION BASED COMPONENTS ko isi liye use kar skty thy ky uss my props pass kar dein or UI par show kara dein. To agar hamey STATE MANAGNEMENT sy related koi kaam karna ho to ham CLASS BASED COMPONENET use karty thy kiu ky CLASS BASED COMPONENTS hamey yah sari chezain provide karty thy jo FUNCTION BASED COMPONENTS provide nahe kiya karty thy. Lekin un my issue yah tha ky woh difficult han or begginners ky liye itny easy to use nahe thy. Inhay use karny ky liye hamey INHERITANCE, THIS KEYWARD, SUPER KEYWARD, OOP CONCEPTS and FUNCTION BINDING ky concept ka pta hona zarori tha. 
+CLASS BASED COMPONENTS sy hamara sara kaam ho to raha tha lekin uss beginner ky liye bhot mushlil the jisy OOP ky concept ka ziada pta nahe hota. Phr REACT ki team ny kuch advancement/upgradation kari FUNCTION BASED COMPONENTS my kuch iss trha ky jo power FUNCTION BASED COMPONENTS
+my nahe the woh unho ny issy HOOKS ky through woh powers provide kari.
+FOR EXAMPLE
+1) CLASS BASED COMPONENTS my hamary pas LIFE CYCLE METHODS thy REACT ki team ny unhay FUNCTION BASED COMPONENTS my HOOKS sy replace kiya.
+2) CLASS BASED COMPONENTS my ham STATE ko use karty thy REACT walo ny HOOK STATE ko bhe introduced kara diya FUNCTION BASED COMPONENTS my.
+3) Isi trha REACT walo ny or bhe bhot si HOOKS ko introdcued karwa.
+
+----------------------------------------------------------- WHAT IS USE STATE IN REACT ? ---------------------------------------------------------
+INTERVIEW QUESTION: USE STATE HOOK IS ASYNCHRONOUS in REACT. VALUE UI par phely upadte hoti hay or console my baad my yani agar UI par 1 hay to console par 0 ho ga or agar UI par 2 hay to console my abi 1 hoga. (CHECK COUNTER COMPONENET)
+Use STATE KO BHE USE KARNY SY PHELY IMPORT KARWANA PARY GA.
+WHAT IS USE STATE ?
+USE STATE 1 hook hay. Ham kesy pehchanay gy yah hook hay yah nahe ? To jo bhe hooks hoty han un ka prefix my USE ka keyward aa raha hota hay.
+Jab my apni customs hooks banayen gy tab bhe ham USE keyward ka use ky hi hook banayen gy taky REACT pehchan saky ky yah 1 hook hay na ky normal function yah koi or cheez hay.
+**************************************************DEEP UNDERSTANDING ABOUT USE STATE HOOK*******************************************************
+USE STATE ky hook my hamey hamesha 1 array milta hay. Or aagr koi bhe value use state my initialize nahe karwaye ho to index 0 par undefined milta hay starting kiu ky jab ham ny let count = useState() yani useState() ko call kiya hay to ham ny argument my koi cheez pass nahe ki hay. Han agar my iss ky andar koi cheez yani useState("haris") "haris" pass kar dein to ab mujhy count my haris mily ga yaad rhay iss useState() my ham NUMBER, STRING, ARRAY, OBJECT, NULL, BOOLEAN kuch bhe pass kar skty han according to our requirnment. USE STATE ko call karty time jo bhe cheez ham as an argument iss my yani useState(argument) my pass karein gy woh hamey ARRAY ky INDEX 0 par mil gy gi or index 1 par aik function milta hay jisy ham SETTER FUNCTION bolain gy iss SETTER FUNCTION ky through ham apnay STATE ki values ko update karein gy . 
+************************************************HOW TO SET OR UPDATE VALUES USING USE STATE HOOK***************************************************
+BAD/WRONG APPROACH
+Agar mujhy useState my value pass karny hay to mujhy pta hay yah 1 array hay to my index's ko use karty howy value pass kar skta hon EXAMPLE:
+  let count = useState()
+    count[0]= "haris"
+    count[1] = 1
+    console.log(count) 
+ANSWER: count ky array my mujhy yah mily ga. (2) ['haris', 1]
+Lekin yah sahe tarika nahe hay value ko update yah set karwanay ka useState hook ko use karty howy. Ham DESCTURTURING parh chuky han JS my to ham yahaan DESCTURTURING use karein gy.
+GOOD WAY BY USING DESTRUCTURING:
+let [count, setCount] = useState(0)
+console.log(count, setCount)// count my yahaan 0 mily ga or setCount my yahaan 1 function mily ga 
+
+___________________________________________________________________________________________________________________________________________________________________
+
+What is RENDER in react ?
+Jab 1st time par componenet jo load ho kar screen par show hota hay yah phr initialize hota hay woh RENDER kehlata hay. Component ki jo birth ho rahe hay yani component jo paida ho raha hy woh RENDER kehlata hay or phr 2nd time 3rd time ..... par jab bhe UI par change ata hay woh rerender kehlata hay.
+What is RERENDER in react AND HOW CAN WE ACHEVIE RERENDERING IN REACT BY USING USE STATE HOOK ?
+Agar ham state ko use nahe karein gy to hamari state update nahe hogi uss surat my hamari UI UPDATE nahe hogi yani hamari jo UI hay woh RERENDER nahe hogi. Agar my chahta hon meri UI RERENDER ho yani jo latest change ho woh meri UI par show kara dy ga. Yani my chah raha hon ky jab bhe changes hon to mera component RERENDR bhe ho yani UI update ho to uss ky liye my USE STATE HOOK ka use karo ga yaad rahy REACT my varibles ko use nahe karo ga jesy JS my use karty thy values ko update karanay ky liye or phr un values ko get kar ky innerHTML ky through set karwa kar UI par show kara dety thy yahaan wohi sab karny ky liye USE STATE HOOK ka use karein gy. Aisa nahe hay ky varibles ko use karna mana hay yah nahe kar skty REACT my balky sirf usi jagah par ham REACT my varibales ka use karein gy jahaan hamara UI par RERENDERING sy koi lena dena(concern) na ho sirf usi surat my varibles ka use karen.
+
+FOR EXAMPLE: Maan lo starting my count ki value 0 hy or iss time jo ZERO 0 value UI par show ho rahe hay yah RENDER kehlata hay yani COMPONENT ki birth hogayi hay. Jab my add ky button par click karo to mery component ki STATE update ho kar value increase ho kar 1 ho gy gi console my bhe or UI my bhe (This is called RERENDERING or ab bar bar value update jab bhe hogi woh rerendering ki kehlaye gi) phr dobara add kar click karo ga count ki value 1 sy 2 hogy gi or isi trha jab decrease ky button par click karo to tab bhe UI par value decrease hoty howy show hogi yah jo bar bar value change hogi add yah decrease par click karny sy or uss ka effect jo UI par show hoga yah RERENDERING kehlata hay. And iss sab ky liye mujhy USE STATE HOOK ko use karna pary ga apnay component my taky meri updated value mujhy RERENDER ho kar UI par show hon. 
+
+***********************************************************IN REACT EVERY COMPONENT HAS 3 LIFE CYCLE METHOD.********************************************************
+1) Render: 1st time par jo COMPONENTS load hota hay to component ki birth hoti hay jisy ham component ka Render hona bhe bolty han.
+
+2) Rerendering: React kuch iss trha kaam karta hay ky jab ap state ko use karo gy or jab state update hogi yani 2nd time 3rd time ... jab bhe state change hogi yah props change hongy uss component ky to hamara componenet RERENDER hoga. "Yani jab bhe value change hogi to hamara component dobara recreate hoga yani dobara rerender hoga or hamey updated value UI par show karey ga".
+
+3) Death: Component dead kab hota hay ? Routing ky time jab ham aik page/screen sy dosri screen/page par jata hon to last screen waly tamam components ki death ho gy gi. Jab tak jis screen par kahara hon yah use kar raha hon uss page/screen ko tab tak un component my jaan hay lekin jesy hi screen change hogi woh component bhe sath hi dead hogy ga. Or jab dobara uss screen par aon ga tab dobara sy paida/birth(render) ho jayen gy or last waly dead ho jayen gy.
+
+-----------------------------------------------------------------CONTROLLED VS UNCONTROLLED COMPONENTS-------------------------------------------------------------
+CONTROLLED COMPONENT YAH UNCONTROLLED COMPONENT MY AIK CHEEZ LAZMI HAY KY IN MY INPUT FIELDS HONI LAZMI HOTA HAY
+
+CONTROLLED COMPONENT:-Woh component jin ko ham states ky through handle karty han woh CONTROLLED COMPONENTS kehlaty han. CONTROLLED COMPONENT my ham jab bhe ham kaam karty han to DOM elements ko directlty target nahe karty kiu ky ham wahaan par state ka concept use karty han to directly DOM uss my target nahe hota hay 
+It uses virtual DOM.
+
+UNCONTROLLED COMPONENT:-
+1)Aisa component jiss ki input field ko ham state ky concept ky ilawa kisi bhe or tarikay sy control karen woh component UNCONTROLLED COMPONENTS kehlaty han. Ab chahe ap usy JQUERY ky thorugh control karo yah phr JS ky thorugh control karo yah phr useRef() ky thorugh control karo.
+2) Jab ham UNCONTROLLED COMPONENTs ka koi bhe concept use karein chahen woh JS ho JQUERY ho yah USEREF() ho to yah kia karty han?  Yah directly hamary DOM element ko target karty han
+
+INTERVIEW QUESTION: Maan lo mery pas form my 5 inputs filds han or uss my ham ny 3 fields ko state ky through yani CONTROLLED COMPONENT ky through control kar rahy han
+or baki 2 input fields ko UNCONTROLLED COMPONENT ky through control kar rhay han to aisy component ko ham kia bolain gy CONTROLLED COMPONENT or UNCONTROLLED COMPONENT?
+ANSWER: Agar ap ny kisi bhe input field ko UNCONTROLLED COMPONENT ky through control kar liya chahye woh 1 hi input field kiu na ho to aisa component UNCONTROLLED COMPONENT kehlata hay. 
+
+Jab bhe event listner listen hota hay to aik object parameter generate hota hay or uss object ky andar hamary listner ki tamam information hoti han ky multiple key 
+values ky pair my hoti han ussi ky through ham ham uss field ko target kar ky uss ky andar sy value nikalty han
+e.target karny par input field aa gy gi jis ko target kiya jaa raha hy phr e.target.value kar ky input field ki value nikal lein gy or phr useState hook ka use karty howy uss ky setter function my set kara dein gy iss trha har input change par yani har key press par aik value mily gi 
+
+For example: onChange = {(e)=>{setItem(e.target.value)}}
+
+
+
+
+
+
+
+
+
+
+
+
