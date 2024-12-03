@@ -1,0 +1,87 @@
+-----------------------------------------------------------------CONTROLLED VS UNCONTROLLED COMPONENTS-------------------------------------------------------------
+CONTROLLED COMPONENT YAH UNCONTROLLED COMPONENT MY AIK CHEEZ LAZMI HAY KY IN MY INPUT FIELDS HONI LAZMI HOTA HAY
+
+CONTROLLED COMPONENT:-Woh component jin ko ham states ky through handle karty han woh CONTROLLED COMPONENTS kehlaty han. CONTROLLED COMPONENT my ham jab bhe ham kaam karty han to DOM elements ko directlty target nahe karty kiu ky ham wahaan par state ka concept use karty han to directly DOM uss my target nahe hota hay 
+It uses virtual DOM.
+
+UNCONTROLLED COMPONENT:-
+1)Aisa component jiss ki input field ko ham state ky concept ky ilawa kisi bhe or tarikay sy control karen woh component UNCONTROLLED COMPONENTS kehlaty han. Ab chahe ap usy JQUERY ky thorugh control karo yah phr JS ky thorugh control karo yah phr useRef() ky thorugh control karo.
+2) Jab ham UNCONTROLLED COMPONENTs ka koi bhe concept use karein chahen woh JS ho JQUERY ho yah USEREF() ho to yah kia karty han?  Yah directly hamary DOM element ko target karty han
+
+INTERVIEW QUESTION: Maan lo mery pas form my 5 inputs filds han or uss my ham ny 3 fields ko state ky through yani CONTROLLED COMPONENT ky through control kar rahy han
+or baki 2 input fields ko UNCONTROLLED COMPONENT ky through control kar rhay han to aisy component ko ham kia bolain gy CONTROLLED COMPONENT or UNCONTROLLED COMPONENT?
+ANSWER: Agar ap ny kisi bhe input field ko UNCONTROLLED COMPONENT ky through control kar liya chahye woh 1 hi input field kiu na ho to aisa component UNCONTROLLED COMPONENT kehlata hay. 
+
+Jab bhe event listner listen hota hay to aik object parameter generate hota hay or uss object ky andar hamary listner ki tamam information hoti han ky multiple key 
+values ky pair my hoti han ussi ky through ham ham uss field ko target kar ky uss ky andar sy value nikalty han
+e.target karny par input field aa gy gi jis ko target kiya jaa raha hy phr e.target.value kar ky input field ki value nikal lein gy or phr useState hook ka use karty howy uss ky setter function my set kara dein gy iss trha har input change par yani har key press par aik value mily gi 
+
+For example: onChange = {(e)=>{setItem(e.target.value)}}
+
+---------------------------------------------------WE COULD HANDLE AN INPUTS FIELDS VALUES BY 2 DIFFERENT APPROCHES---------------------------------------------------
+1) Most Preferred Method: (By creating handlers) 
+Handler bana kar yani jo input field ho uss my event ky andar aik function/Handler pass kar dein or phr uss function/handler ko wahaan use kar lein gy jahaan JS likhty han REACT my return sy phely. Iss sy yah hota hay ky hamara JSX code clean rehta hay or maan lo agar mujhy bhot si functionalities ham ny event ky trigger hony par apply karwani hay to agar ham JSX ky andar code karen gy to hamara code my bhot gich pitch barh gy gi or code ki readiblity bhe kam ho gy gi to acha yah ky aik onInputChangeHandler() pass kar diya gy event ky andar JSX my phr usi function/handler ko REACT CODE ky andar use kar liye gy or jo bhe functinalities add karni ho to REACT CODE ky andar add ki jayen iss sy code ki readiblity barh jati hay or hamara JSX CODE clean rehta hay.
+for example: 	
+_________________________________
+REACT CODE:
+const onInputChangeHandler = (e) =>{
+setName(e.target.value)
+//Jo bhe functionalities hon gi ham yahaan REACT ky code ky andar likhain gy.
+}
+_________________________________
+JSX CODE:	      
+<label htmlFor="Name">Name</label>      
+<input type="text" onChange={onInputChangeHandler}/>
+____________________________________________________________
+
+2) Short method 1 LINERS (But has some disadvange) 
+When to use this METHOD/SNTAX:
+Iss METHOD/SYNTAX ko tab use karein gy jab hamey yah maloom ko ky han ny sirf input ki values hi nikalni han or un par mazeed koi functionalities wagera apply/check nahe karwani han. Tab hi ham iss syntax ko use karein gy. Aisa nahe ky iss method ky thorugh ham functionalities apply nahe kar skty, ham iss method ky thorugh yani apni JSX ky andar bhe functionalities CODE ki likh skty han lekin uss sy hamara code ki readiblity kam hogy gi. Or hamey koshish karni chaihyee ky hamesha apna JSX CODE clean rakhen or jo bhe functionalities han unhy REACT CODE ky andar likhain to uss ky liye hamey method 1 use karna pary ga phr.
+____________________________________________________________________________
+Value ky andar 'useState' ki initial value pass karein gy ky ham kia rakhna chah rahy han initial my apni input field my or onchange/onclick(events) ky andar useState ka setter function ky through value set karein gy kuch iss trha ky Jab bhe event listner listen hota hay to aik object parameter generate hota hay or uss object ky andar hamary listner ki tamam information hoti han ky multiple key values ky pair my hoti han ussi ky through ham ham uss field ko target kar ky uss ky andar sy value nikalty han e.target karny par input field aa gy gi jis ko target kiya jaa raha hy phr e.target.value kar ky input field ki value nikal lein gy or phr useState hook ka use karty howy uss ky setter function my set kara dein gy iss trha har input change par yani har key press par aik value mily gi 
+____________________________________________________________________________________________
+REACT CODE:
+THIS METHOD DOES NOT NEED ANY REACT CODE KIU KY SARA KAAM JSX KY ANDAR HI KARWA DETY HAN.
+____________________________________________________________________________________________
+JSX CODE: 
+<input type="text" id='Name' value={name} onChange={(e) => {setName(e.target.value)}}/>
+____________________________________________________________________________________________
+
+********************************************************************************************************************************************************************
+------------------CAN WE USE COMBINE MULTIPLE USE STATE INTO 1 USE STATE IF THE DATA WE ARE HANDELING IS RELATED TO SAME ENITITY: ANSWER IS "YES"--------------------
+Maan lo mery pas multiple use states han or woh tamam use states 1 hi cheez sy related han for example 1 form hay or har input value ko screen par rerender karwanay ky liye mujhy har input field ky liye ky new USE STATE HOOK use karna par raha hy. In tamam USESTATES ky through ham form ky data ki value utha kar UI par rerender karwa rahy thy har change par by using USE STATE HOOK.
+    // const [name, setName] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [gender, setGender] = useState("");
+    // const [password, setPassword] = useState("");
+To aj ham sekhain ky gy ky agar 1 cheez sy related multiple USE STATES hon to unhay kesy 1 hi USE STATE HOOK ky thorugh un ki values ko extract kar skty han 
+Object destructuring use karty howy han ny tamam USE STATE jo alag alag use ho rahe the un sab ky liye 1 hi USE STATE create kar di hay. 
+const [data, setData] = useState({name : "", email: "",gender: "" ,password: "" }); 
+How we will access their values now in JSX ?
+ <label htmlFor="Name">Name</label>
+   <div>
+   <input type="text" id='Name' value={data.name} onChange={(e) => {setData({...data, name: e.target.value})
+   console.log(e.target)
+   }}/>
+   </div>
+EXPKANATION: 
+1) HOW TO SET INITIAL VALUE IN A USE STATE ? 
+value={data.name} // value my hamehsa ham initial value set karwaty han jo phely ham NAME set karwa rahy thy lekin ab OBJECT DESTRUCTRING ky through tamam states ko 1 hi state bana kar use kar rahy han to ab hamari initial value DATA.NAME hogi.
+2) HOW TO SET UPDATED VALUE ON EVERY CHANGE USING USE STATE HOOK ? 
+onChange={(e) => {setData({...data, name: e.target.value})}}
+...data ISS KA MTLB HAY KY DATA KI JO BHE INITIAL VALUES HAN UN KO SPREAD KARWA DO KUCH ISS TRHA (Step # 01 for explanation/understanding):
+onChange={(e) => {setData({name : "", email: "",gender: "" ,password: "", name: e.target.value}
+(Step # 02 for explanation/understanding): onChange={(e) => {setData({...data, name: e.target.value}
+...data ky baad ham name: my isi liye liye likh raha hon kiu ky my input name ki field ko target kar raha hon. Uss ky baad jesy mujhy pta hay ky name ki initial value mery pas empty string hogi (check step 01) to jab my name ki field ko get kar ky uss ky andar e.target.value kar ky value set karwa dn ga kuch iss trha for example:
+name: e.target.value
+'USE STATE' IS IMMUTABLE:- Means that ky ham isy update nahe kar skty isi wjah sy ham 'SPREAD OPERATOR' ky thorugh iss ki value ko spread karwa kar rahy han ...date kar ky phr un my sy uss 1 value ko utha rahy han jis my ham value set karwana chah rahy han jesy name: e.target.value kar ky.  
+name ki starting value name : "" empty string hogi or uss ky andar jab value set hogy gi to empty string overwrite hogy gi new updated value sy (name: e.target.value)
+
+
+
+ 
+
+
+
+
+
