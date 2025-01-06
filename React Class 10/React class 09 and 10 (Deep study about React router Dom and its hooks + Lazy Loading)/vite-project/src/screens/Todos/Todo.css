@@ -1,0 +1,23 @@
+#todos-component{
+
+border: 5px solid black;
+}
+#todos-component .todo-header-style{
+display: flex;
+ justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  width: 20%;
+  height: 45vh;
+  gap: 3rem;
+  padding: 1rem;
+border: 4px solid grey;
+background-color: beige;
+border-radius: 0.5rem;
+}
+
+
+.todo-header-style li {
+    list-style: none;
+    text-decoration: none;
+}

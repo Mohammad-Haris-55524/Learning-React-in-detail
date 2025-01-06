@@ -1,0 +1,22 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #6495ED;
+}
+.checkClass{
+    display: flex;
+    gap: 4rem;
+    list-style: none;
+}
+nav ul li, header a{
+    list-style: none;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+nav {
+    /* border: 5px solid black; */
+    padding-top: 1rem;
+}
