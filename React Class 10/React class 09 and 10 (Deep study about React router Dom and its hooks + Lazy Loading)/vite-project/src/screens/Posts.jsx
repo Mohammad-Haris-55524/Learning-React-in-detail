@@ -95,4 +95,88 @@ import { Pagination } from 'antd';
 //   }
 //   export default Posts
 
+// ______________________________________________________________________________________________________________________
+// _________________________ DEEP DIVE INTO USP SEARCH PARAM() HOOK BY USING ABOVE POST SCENERIO ________________________
+// ----------------------------- HOOK AND  HOW TO FILTER POSTS BY USING THIS HOOK PARAMS -------------------------------
+// ______________________________________________________________________________________________________________________
 
+function Posts(){
+const {data,isLoading,error} = useFetch('https://jsonplaceholder.org/posts')
+console.log(data,isLoading,error)
+// Initializing useSearchparam Hook()
+const [serachParam, setSearchParam] = useSearchParams()
+const [filterPostsByParams, setfilterPostsByParams] = useState('');
+
+
+// ______________________________________________________________________________________________________________________
+//Additional feature: Issy remove bhe kar dein koi issue nahe aye kiu ky yah useEffect sirf tab kaam kary ga jab user
+// directly khud url my changes kar ky category name pass karta hy to yah uss lihaz sy POSTS filter kar ky la dy ga. 
+  useEffect(() => {
+    const category = serachParam.get('category') || ''; // Get the category from URL query param
+    setfilterPostsByParams(category); // Set the category in state for filtering posts
+    console.log({category}, {filterPostsByParams})
+  }, [serachParam]); // This effect depends on changes to search params
+// ______________________________________________________________________________________________________________________
+
+// Function to get value of each button by clicking category buttons filter, and setting their values in query param dynamically.
+  const getButtonNameHandler = (e) => {
+    const category = e.target.name || ''; // Get the button's category
+    console.log(category)
+// Jo mujhy category ki value button ky click hony par mily gi usy my set serachParam ky hook my save karwao ga object
+// bana kar kiu ky query params hamey key value ky pair my milty han hamesha yaad rakhna iss baat ki 
+    setSearchParam({category}); // Set the category as a query param in the URL
+    console.log({category},serachParam)
+// Ab jo catergories button ky click hony par jo value mili hogi uss ky lihaaz sy ham apni POSTS ko filter karwayen gy
+    setfilterPostsByParams(category); // Set the category in the state
+  };
+
+return (
+  <>
+{/* ----------------------------------- CATAGORIES OF POSTS TO BE FILTERED ON CLICK ---------------------------------- */}
+  <div style={{marginTop: "0.5rem" }}>
+  <h2>Search Posts by Categories</h2>
+  <button className='button-class' onClick={getButtonNameHandler}>All</button>
+  <button className='button-class' name='lorem' onClick={getButtonNameHandler}>lorem</button>
+  <button className='button-class' name='jsonplaceholder' onClick={getButtonNameHandler}>jsonplaceholder</button>
+  <button className='button-class' name='ipsum' onClick={getButtonNameHandler}>ipsum</button>
+  <button className='button-class' name='rutrum' onClick={getButtonNameHandler}>rutrum</button>
+  <button className='button-class' name='elementum' onClick={getButtonNameHandler}>elementum</button>
+  </div>
+{/* ----------------------------------------------------------------------------------------------------------------- */}
+
+  <h1 style={{textAlign:"center"}}>All Posts Data</h1>
+  {/* {isLoading && <Spin size={'large'} spinning={true}></Spin>} */}
+  {error && <h3 style={{color: "red"}}>{error}</h3>}
+
+  <div style={{display:"flex",justifyContent:"space-evenly" ,flexWrap:"wrap",maxWidth: "100%"}}>  
+  {(data || []).map((post) => {
+
+//If Condition # 01): Woh Posts filter karwa kar la kar do jo match kar jati hy button ki uss value sy jo ham ny UseState
+// ky variable ((filterPostsByParams)) my save karwaye the. Or agar aisa nahe hota to check condition # 02 below
+
+// if(post.category === filterPostsByParams){
+  if(post.category && post.category.toLowerCase() === filterPostsByParams.toLowerCase().trim()){ 
+    // {console.log(post.category,{filterPostsByParams})}
+  console.log("If case")
+  return <div style={{border: "3px solid black", maxWidth: "23%",borderRadius:"0.5rem",
+    margin:"0.5rem 0rem",
+    padding:"1rem 0.5rem"}}
+    key={post.id}>
+    <DynamicUiForPostsAndPostScreen post={post}  btnIsVisible={true} /></div>}
+
+  
+// If conditon # 02 Or agar user click nahe karta Category ky btn par to UseState ky variable my ('') empty milay ga yani
+// false to ham false ko !false kar ky true karwayen gy or iss trha sari woh POSTS render karwa dei gy jo hamey API sy mil
+// rahe hongi 100 ki 100 posts.
+  if(!filterPostsByParams){
+    return <div style={{border: "3px solid black", maxWidth: "23%",borderRadius:"0.5rem",
+      margin:"0.5rem 0rem",
+      padding:"1rem 0.5rem"}}
+      key={post.id}>
+      <DynamicUiForPostsAndPostScreen post={post}  btnIsVisible={true} /></div>}}
+)}</div>
+<Pagination defaultCurrent={1} total={50}/>
+</>
+)
+}
+export default Posts
