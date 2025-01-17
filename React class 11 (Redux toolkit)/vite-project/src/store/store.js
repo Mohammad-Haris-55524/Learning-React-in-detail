@@ -9,7 +9,16 @@
 
 import { configureStore } from '@reduxjs/toolkit'
 
+// 1) For default export CounterSlice.reducers
+import counterReducer from './features/counterSlice'
+
+// 2) For named export CounterSlice.reducers
+// import { counterReducer } from './features/counterSlice'
+
+
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    count: counterReducer
+  },
 })
 
