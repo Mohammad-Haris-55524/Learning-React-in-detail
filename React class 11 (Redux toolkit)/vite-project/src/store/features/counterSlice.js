@@ -18,7 +18,10 @@ const counterSlice = createSlice({
 // action: Iss my hamey aik type ka object milta {type: 'counter/increment', payload: undefined}, 
 // 1) Type my name ata hay Uss function ka jo trigger howa ho + Slice ka name ata hy jis ka function trigger howa ho.
 // 2) Payload my hamey woh value milti hay jo ham application ky thorugh pass karaty han useDispatch hook ka use karty howy function ky andar
-// as an argument. 
+// as an argument.
+//"action creaters(increment(), decrement() ....) ko jab ham dispatch karwa rahy hoty kuch iss trha go and check Counter Component =======>
+//  dispatch(incrementByAmount(10))
+//  han to jo data ham pass kar rahy hoty han woh PYALOAD kehlata hy ====> 10 mujhy payload my mily ga jo my ny as an argument pass kiya hoga"
             console.log(state, action)
             state.value += 1;
         },
@@ -28,7 +31,14 @@ const counterSlice = createSlice({
         },
 
         incrementByAmount: (state,action)=>{
-            state.value = action.payload + 1 
+            console.log(action)
+            
+            if(action.payload !== undefined){
+                // state.value = state.value + action.payload
+                state.value += action.payload
+            } 
+
+            
         },
 
         decrementByAmount : (state,action)=>{

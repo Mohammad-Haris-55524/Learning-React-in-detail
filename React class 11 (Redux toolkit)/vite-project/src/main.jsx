@@ -1,6 +1,6 @@
 import { Component, StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import './index.css'; // Import Tailwind CSS
 import App from './App.jsx'
 //---------------------------- How to link our GLOBAL STORE (index.js / store.js) with our application ? -------------------------------------
 import { store } from './store/store.js' //store ky folder ky andar mojood index.js/store.js ki file ko ham yahaan import karwa rahy han.
