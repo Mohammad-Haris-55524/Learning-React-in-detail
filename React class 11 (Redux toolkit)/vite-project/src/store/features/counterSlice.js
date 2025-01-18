@@ -42,7 +42,11 @@ const counterSlice = createSlice({
         },
 
         decrementByAmount : (state,action)=>{
-            state.value = action.payload - 1
+            if(action.payload !== undefined ){
+                state.value = state.value - action.payload 
+
+                // console.log("decrementByAmount clicked: ", state.value)
+            }
         }
     }
 });
