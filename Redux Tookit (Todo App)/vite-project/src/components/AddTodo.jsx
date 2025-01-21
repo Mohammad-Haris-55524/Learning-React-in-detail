@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodo } from '../store/features/todoSlice'
+import { addTodo, updateTodo } from '../store/features/todoSlice'
+
 
 function AddTodo() {
     const [todoTitle, setTodoTitle] = useState("")
@@ -24,6 +25,7 @@ function AddTodo() {
     dispatch(addTodo(todoTitle)) 
     setTodoTitle('')
     }
+    // console.log(id)
   return (
     <>
     <h1>Todo Application using Redux (Global state managnment)</h1>

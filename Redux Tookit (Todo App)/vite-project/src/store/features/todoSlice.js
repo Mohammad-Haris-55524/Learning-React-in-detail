@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     todosArray: [
-        {id: 1, title: "Breakfast at 5:30 am"},
+        {id: Date.now(), title: "Breakfast at 5:30 am"},
     ]
 }
 const todoSlice = createSlice({
@@ -14,7 +14,7 @@ const todoSlice = createSlice({
       console.log("add todo clicked")
       // console.log(action.payload)
       const userInputTodo = {
-        id: 2, title: action.payload
+        id: Date.now(), title: action.payload
       }
       state.todosArray.push(userInputTodo)
       console.log(state.todosArray)
@@ -32,12 +32,18 @@ const todoSlice = createSlice({
         })
         console.log(state.todosArray)
       
-    }
+    },
+
+    updateTodo: (state,action) =>{
+      console.log("Update todo clicked",action.payload)
+      
+    
+    } 
 
   }  
 })
 
-export const {addTodo, deleteTodo} = todoSlice.actions
+export const {addTodo, deleteTodo, updateTodo} = todoSlice.actions
 
 // Way : 01 (Naming export)
 // export const todoSliceReducer = todoSlice.reducer
