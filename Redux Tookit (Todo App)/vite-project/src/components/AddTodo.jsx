@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addTodo, updateTodo } from '../store/features/todoSlice'
 
 
-function AddTodo() {
-    const [todoTitle, setTodoTitle] = useState("")
+function AddTodo({todoTitle, setTodoTitle,updateTodoOrNot, setupdateTodoOrNot}) {
+   
     
     const ableOrDisableAddTodoBtn = todoTitle.trim() !== undefined &&  todoTitle.trim() !== ""
     console.log(ableOrDisableAddTodoBtn)
@@ -16,22 +16,37 @@ function AddTodo() {
     const dispatch = useDispatch()
 
     const addTodoTitleHandler = (e) =>{
-      console.log(e.target.value)
+      // console.log(e.target.value)
       setTodoTitle(e.target.value)
     }
 
     const todoSubmitHandler = (e) => {
     e.preventDefault()
-    dispatch(addTodo(todoTitle)) 
+    if(updateTodoOrNot){
+      console.log("I am from update todo", updateTodoOrNot ,todoTitle )
+      const userUpdatedTodo = {
+        id: updateTodoOrNot.id, title: todoTitle
+      }
+
+      dispatch(updateTodo(userUpdatedTodo))
+      setupdateTodoOrNot(false)
+    }
+    else{
+      const userInputTodo = {
+        id: Date.now(), title: todoTitle
+      }
+    dispatch(addTodo(userInputTodo)) 
+
+    }
     setTodoTitle('')
     }
-    // console.log(id)
+
   return (
     <>
     <h1>Todo Application using Redux (Global state managnment)</h1>
     <form onSubmit={todoSubmitHandler}>
     <input type="text" value={todoTitle} placeholder='Add Title' onChange={addTodoTitleHandler} />
-    <button disabled={!ableOrDisableAddTodoBtn}>Add Todo</button>
+    <button disabled={!ableOrDisableAddTodoBtn}>{updateTodoOrNot ? "Update Todo" : "Add Todo"}</button>
     </form>
     </>
     
