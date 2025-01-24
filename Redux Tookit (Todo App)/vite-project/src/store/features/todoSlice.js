@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     todosArray: [
-        {id: Date.now(), title: "Breakfast at 5:30 am"},
+        {id: Date.now(), title: "Breakfast at 5:30 am", isCompleted: false},
     ]
 }
 const todoSlice = createSlice({
@@ -56,12 +56,16 @@ const todoSlice = createSlice({
         console.log("Todo not found");
       }
     },
+
+    doneOrUndoTodoStatus: (state,action) =>{
+      console.log("Done or undone slice: ", action.payload)
+    }
     
 
   }  
 })
 
-export const {addTodo, deleteTodo, updateTodo} = todoSlice.actions
+export const {addTodo, deleteTodo, updateTodo, doneOrUndoTodoStatus} = todoSlice.actions
 
 // Way : 01 (Naming export)
 // export const todoSliceReducer = todoSlice.reducer

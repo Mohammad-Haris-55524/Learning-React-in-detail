@@ -4,14 +4,13 @@ import { addTodo, updateTodo } from '../store/features/todoSlice'
 
 
 function AddTodo({todoTitle, setTodoTitle,updateTodoOrNot, setupdateTodoOrNot}) {
-   
-    
+    console.log(updateTodoOrNot)
     const ableOrDisableAddTodoBtn = todoTitle.trim() !== undefined &&  todoTitle.trim() !== ""
-    console.log(ableOrDisableAddTodoBtn)
+    // console.log(ableOrDisableAddTodoBtn)
 
     // useSelector Hook for accessing the gloabal state
     const todoState = useSelector((state)=>state)
-    console.log(todoState)
+    // console.log(todoState)
     // useDispatch Hook for accessing function creater made in global state
     const dispatch = useDispatch()
 
@@ -23,9 +22,9 @@ function AddTodo({todoTitle, setTodoTitle,updateTodoOrNot, setupdateTodoOrNot}) 
     const todoSubmitHandler = (e) => {
     e.preventDefault()
     if(updateTodoOrNot){
-      console.log("I am from update todo", updateTodoOrNot ,todoTitle )
+      console.log("I am from update todo", updateTodoOrNot ,todoTitle)
       const userUpdatedTodo = {
-        id: updateTodoOrNot.id, title: todoTitle
+        id: updateTodoOrNot.id, title: todoTitle, isCompleted: false
       }
 
       dispatch(updateTodo(userUpdatedTodo))
@@ -33,7 +32,7 @@ function AddTodo({todoTitle, setTodoTitle,updateTodoOrNot, setupdateTodoOrNot}) 
     }
     else{
       const userInputTodo = {
-        id: Date.now(), title: todoTitle
+        id: Date.now(), title: todoTitle, isCompleted: false
       }
     dispatch(addTodo(userInputTodo)) 
 
