@@ -19,7 +19,8 @@ function UpdatedTodosScreen() {
     {(allTodos || []).map((todo)=>{
         console.log(todo)
      
-        return <div key={todo.id}><DoneOrUndoneTodo id={todo.id} isCompleted={todo.isCompleted} 
+        return <div style={{border: todo.isCompleted ? "5px solid green" : "5px solid red"}} key={todo.id}>
+        <DoneOrUndoneTodo id={todo.id} isCompleted={todo.isCompleted} 
         // setdoneUndoneTodo={setdoneUndoneTodo}
         /> Todo id: {todo.id} Todo title: {todo.title}
         <DeleteTodo id={todo.id}/> 
