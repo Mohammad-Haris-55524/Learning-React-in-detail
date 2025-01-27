@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodo, updateTodo } from '../store/features/todoSlice'
+// import { addTodo, updateTodo } from '../store/features/todoSlice'
+
+// For Local storage todo slice
+import { addTodo, updateTodo } from '../store/features/todoSliceWithLocalStorage'
+
 
 
 function AddTodo({todoTitle, setTodoTitle,updateTodoOrNot, setupdateTodoOrNot}) {

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { doneOrUndoTodoStatus } from '../store/features/todoSlice'
+
+// For normal todo slice
+// import { doneOrUndoTodoStatus } from '../store/features/todoSlice'
+
+// For Local storage todo slice
+import { doneOrUndoTodoStatus } from '../store/features/todoSliceWithLocalStorage'
 
 function DoneOrUndoneTodo({id}) {
     const [isChecked, setisChecked] = useState(false)

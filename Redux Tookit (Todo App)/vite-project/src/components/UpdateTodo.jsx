@@ -1,6 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateTodo } from '../store/features/todoSlice'
+// For normal todo slice
+// import { updateTodo } from '../store/features/todoSlice'
+
+// For Local storage todo slice
+import { updateTodo } from '../store/features/todoSliceWithLocalStorage'
+
 
 function UpdateTodo({id,title, todoTitle, setTodoTitle, updateTodoOrNot, setupdateTodoOrNot, isCompleted}) {
     const todoState = useSelector((state)=>state.todos.todosArray)
