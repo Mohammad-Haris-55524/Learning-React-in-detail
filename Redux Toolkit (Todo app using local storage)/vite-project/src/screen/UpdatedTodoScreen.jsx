@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTodo from "../components/AddTodo";
-import DeleteTodo from "../components/DeleteTodo";
 import UpdateTodo from "../components/UpdateTodo";
+import DeleteTodo from "../components/DeleteTodo";
 import DoneOrUndoneTodo from "../components/DoneOrUndoneTodo";
-import {
-  addTodo,
-  deleteTodo,
-  updateTodo,
-  doneOrUndoTodoStatus,
-} from "../store/features/todoSliceWithLocalStorage";
 
 function UpdatedTodosScreen() {
   const [todoTitle, setTodoTitle] = useState("");
@@ -31,25 +25,18 @@ function UpdatedTodosScreen() {
       {todos.map((todo) => (
         <div
           style={{
-            border: todo.isCompleted ? "5px solid green" : "5px solid red",
+            border: todo.isCompleted ? "5px solid green" : "5px solid red", width: "30rem",
           }}
           key={todo.id}
         >
-          <DoneOrUndoneTodo
-            id={todo.id}
-            isCompleted={todo.isCompleted}
-            onClick={() => dispatch(doneOrUndoTodoStatus(todo.id))}
-          />
-          Todo id: {todo.id} Todo title: {todo.title}
-          <DeleteTodo id={todo.id} onClick={() => dispatch(deleteTodo(todo.id))} />
-          <UpdateTodo
-            id={todo.id}
-            title={todo.title}
-            todoTitle={todoTitle}
-            setTodoTitle={setTodoTitle}
-            updateTodoOrNot={updateTodoOrNot}
-            setUpdateTodoOrNot={setUpdateTodoOrNot}
-          />
+          <div style={{display:"flex", justifyContent: "space-between", alignItems: "center"}}> 
+          <DoneOrUndoneTodo id={todo.id} isCompleted={todo.isCompleted}/>
+          Id: {todo.id}, Title: {todo.title} 
+          <UpdateTodo id={todo.id} setUpdateTodoOrNot={setUpdateTodoOrNot}/> 
+          <DeleteTodo id={todo.id}/>
+          </div>
+
+
         </div>
       ))}
     </>

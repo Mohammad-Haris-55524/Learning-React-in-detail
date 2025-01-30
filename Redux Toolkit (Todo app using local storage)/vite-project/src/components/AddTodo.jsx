@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo, updateTodo } from "../store/features/todoSliceWithLocalStorage";
+import { addTodo, updateTodo } from "../store/features/todoSliceUsingLocalStorage";
 
 function AddTodo({ todoTitle, setTodoTitle, updateTodoOrNot, setUpdateTodoOrNot }) {
   const dispatch = useDispatch();
+  console.log(updateTodoOrNot)
 
   const todoSubmitHandler = (e) => {
     e.preventDefault();
     if (updateTodoOrNot) {
       const userUpdatedTodo = {
-        id: updateTodoOrNot.id,
+        id: updateTodoOrNot,
         title: todoTitle,
         isCompleted: false,
       };
