@@ -12,15 +12,3 @@ createRoot(document.getElementById('root')).render(
     </PersistGate>
   </Provider>
 )
-
-// // import UpdatedTodosScreen from "./components/UpdatedTodoScreen";
-
-// const App = () => (
-//   <Provider store={store}>
-//     <PersistGate loading={null} persistor={persistor}>
-//       <App />
-//     </PersistGate>
-//   </Provider>
-// );
-
-// export default App;

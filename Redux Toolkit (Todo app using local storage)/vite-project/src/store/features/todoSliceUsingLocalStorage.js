@@ -33,22 +33,23 @@ const todoSliceUsingLocalStorage = createSlice({
       }
     },
 
-    doneOrUndoTodoStatus: (state, action) => {
+    checkedOrUncheckedTodoStatus: (state, action) => {
       console.log("Done or undone slice: ", action.payload);
-      const todoIndex = state.todosArray.findIndex(
-        (todo) => todo.id === action.payload
-      );
-
-      if (todoIndex !== -1) {
-        // Toggle the completion status
-        state.todosArray[todoIndex].isCompleted =
-          !state.todosArray[todoIndex].isCompleted;
+      const {id, isCompleted} = action.payload
+      const index = state.todosArray.findIndex((todo)=> todo.id === id)
+      console.log(index, isCompleted)
+      if(isCompleted){
+        state.todosArray[index].isCompleted = isCompleted
       }
+      else{
+        state.todosArray[index].isCompleted = isCompleted
+      }
+      
     },
+
   },
 });
 
-export const { addTodo, deleteTodo, updateTodo, doneOrUndoTodoStatus } =
-  todoSliceUsingLocalStorage.actions;
+export const { addTodo, deleteTodo, updateTodo, checkedOrUncheckedTodoStatus } = todoSliceUsingLocalStorage.actions;
 
 export default todoSliceUsingLocalStorage.reducer;

@@ -20,19 +20,21 @@ function UpdatedTodosScreen() {
         setTodoTitle={setTodoTitle}
         updateTodoOrNot={updateTodoOrNot}
         setUpdateTodoOrNot={setUpdateTodoOrNot}
-      />
-      <h1>Updated Todos Screen</h1>
-      {todos.map((todo) => (
+        />
+      <h1>Todos Main Screen (No of Todos: {todos.length})</h1>
+      {todos.length === 0 && <h1>No Todos Found !</h1>}
+      {todos.map((todo,index) => (
         <div
           style={{
-            border: todo.isCompleted ? "5px solid green" : "5px solid red", width: "30rem",
+            border: todo.isCompleted ? "5px solid green" : "5px solid red", width: "30rem", marginBottom: "1rem"
           }}
           key={todo.id}
         >
           <div style={{display:"flex", justifyContent: "space-between", alignItems: "center"}}> 
           <DoneOrUndoneTodo id={todo.id} isCompleted={todo.isCompleted}/>
-          Id: {todo.id}, Title: {todo.title} 
-          <UpdateTodo id={todo.id} setUpdateTodoOrNot={setUpdateTodoOrNot}/> 
+          No: {index + 1} Id: {todo.id}, Title: {todo.title} 
+          <UpdateTodo id={todo.id} title={todo.title} setUpdateTodoOrNot={setUpdateTodoOrNot}
+          setTodoTitle={setTodoTitle}/>
           <DeleteTodo id={todo.id}/>
           </div>
 

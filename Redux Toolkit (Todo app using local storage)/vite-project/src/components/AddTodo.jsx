@@ -4,19 +4,20 @@ import { addTodo, updateTodo } from "../store/features/todoSliceUsingLocalStorag
 
 function AddTodo({ todoTitle, setTodoTitle, updateTodoOrNot, setUpdateTodoOrNot }) {
   const dispatch = useDispatch();
-  console.log(updateTodoOrNot)
+  console.log(updateTodoOrNot,todoTitle)
 
   const todoSubmitHandler = (e) => {
     e.preventDefault();
     if (updateTodoOrNot) {
       const userUpdatedTodo = {
-        id: updateTodoOrNot,
-        title: todoTitle,
+        id: updateTodoOrNot, // Yahaan issy sirf wohe id mily gi jo ham isy updated todo component sy pass kar rahy hongy.
+        title: todoTitle, // Updated todo component my ham jo title pass karein gy wohe updated title ham yahaan set karwa dein gy. 
         isCompleted: false,
       };
       dispatch(updateTodo(userUpdatedTodo));
       setUpdateTodoOrNot(false);
-    } else {
+    } 
+    else {
       const userInputTodo = {
         id: Date.now(),
         title: todoTitle,
