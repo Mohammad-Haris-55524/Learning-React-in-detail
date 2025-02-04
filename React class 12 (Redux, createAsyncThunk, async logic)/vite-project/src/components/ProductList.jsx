@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/features/productSlice';
+import CartBtn from './CartBtn';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -14,14 +15,15 @@ const ProductList = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
-      <h1>Products</h1>
-      <ul>
+    <div className=''>
+      <h1 className='text-3xl font-extrabold'>Products</h1>
+      <ul className='border-2 flex justify-between flex-wrap '>
         {products.map((product) => (
-          <li key={product.id}>
+          <li className='w-80 border ' key={product.id}>
             <h2>{product.title}</h2>
             <p>{product.description}</p>
             <p>${product.price}</p>
+            <CartBtn/>
           </li>
         ))}
       </ul>
