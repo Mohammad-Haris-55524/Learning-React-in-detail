@@ -1,13 +1,16 @@
 import React from 'react'
 import Header from '../components/Header'
 
-function Cart() {
+function HomeScreen() {
   return (
     <>
     <Header/>
-    <h1>Cart</h1>
+    <h1>Welcome to Home Screen</h1>
     </>
   )
 }
 
-export default Cart
+export default HomeScreen
+
+
+

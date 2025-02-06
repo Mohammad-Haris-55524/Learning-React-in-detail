@@ -9,8 +9,12 @@ function Header() {
       </div>
       <nav>
         <ul className="flex gap-x-12">
+        <li className="text-lg font-serif text-blue-700 hover:text-blue-900">
+            <Link to={"/"}>Home</Link>
+          </li>
+
           <li className="text-lg font-serif text-blue-700 hover:text-blue-900">
-            <Link to={"/"}>Products</Link>
+            <Link to={"/products"}>Products</Link>
           </li>
 
           <li className="text-lg font-serif text-blue-700 hover:text-blue-900">

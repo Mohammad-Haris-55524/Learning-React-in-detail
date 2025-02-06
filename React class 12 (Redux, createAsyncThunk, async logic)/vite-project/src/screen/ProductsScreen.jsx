@@ -5,12 +5,9 @@ import CardComponent from '../components/CardComponent';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 
-
-
 const ProductsScreen = () => {
   const dispatch = useDispatch();
   const { products, isLoading, error } = useSelector((state) => state.products);
-
 
   useEffect(() => {
     dispatch(fetchProducts());

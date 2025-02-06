@@ -1,8 +1,13 @@
 import React from 'react'
+import Header from '../components/Header'
 
 function NoPageFound() {
   return (
-    <div>NoPageFound</div>
+    <>
+    <Header/>
+    <h1>No Page Found</h1>
+    </>
+ 
   )
 }
 
