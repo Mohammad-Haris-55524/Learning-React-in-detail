@@ -8,6 +8,7 @@ import SignUp from './screen/SignUp'
 import NoPageFound from './screen/NoPageFound'
 import ProductDetail from './components/ProductDetail'
 import HomeScreen from './screen/HomeScreen'
+import AddToCart from './components/AddToCart'
 
 function App() {
 return (
@@ -16,11 +17,12 @@ return (
 <Routes>
   <Route path='/' element={<HomeScreen/>}/>
   <Route path='products' element={<ProductsScreen/>}/>
+  <Route path='products/:productId' element={<ProductDetail/>}/>
   <Route path='about-us' element={<AboutUs/>}/>
   <Route path='cart' element={<Cart/>}/>
+  <Route path='cart/:productId' element={<AddToCart/>}/>
   <Route path='sign-in' element={<SignIn/>}/>
   <Route path='sign-up' element={<SignUp/>}/>
-  <Route path='products/:productId' element={<ProductDetail/>}/>
   <Route path='*' element={<NoPageFound/>}/>
 </Routes>
 </BrowserRouter>

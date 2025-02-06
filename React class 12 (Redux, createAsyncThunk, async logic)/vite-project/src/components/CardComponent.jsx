@@ -1,5 +1,5 @@
 import React from 'react';
-import CartBtn from './CartBtn';
+import CartBtn from './AddToCart';
 import { Card } from 'antd';
 import { Link, useNavigate,  } from 'react-router-dom';
 
@@ -7,9 +7,15 @@ function CardComponent({ product, isLoading }) {
   const navigate = useNavigate()
   const { Meta } = Card;
 
-  const passingProductAndProductIdHandler = () => {
+  const passingProductAndProductIdrToProductDetailComponentHandler = () => {
     // Passing single product detail to product detail page so we could show it on UI.
+    console.log("Product for product detail component", product)
     navigate(`/products/${product.id}?title${product.title}&product_Id${product.id}`, {state:{product: product}})
+  }
+
+  const passingProductAndProductToCartComponentHandler = () => {
+    console.log("Product for cart component ", product)
+    navigate(`/cart/${product.id}?title${product.title}&product_Id${product.id}`, {state:{product: product}})
   }
   return (
     <Card
@@ -33,14 +39,21 @@ function CardComponent({ product, isLoading }) {
       </Link>  */}
 
       {/* (METHOD # 02) ======================> Navigating from main product screen to product detail screen  */}
-    <button onClick={passingProductAndProductIdHandler}
+    <button onClick={passingProductAndProductIdrToProductDetailComponentHandler}
      className='mt-2  bg-green-500 hover:bg-green-400 px-2 py-1 rounded-md text-white'>
     Check Product detail
     </button>
     
-               
+    {/* <Link to={`/cart/${product.id}`}>
+    <button className='bg-blue-500 px-4 py-1 mt-4 text-white  rounded-md w-max hover:bg-blue-400' >Add to Cart</button>
+    </Link>  */}
 
-      <CartBtn />
+
+  <button onClick={passingProductAndProductToCartComponentHandler}
+     className='bg-blue-500 px-4 py-1 mt-4 text-white  rounded-md w-max hover:bg-blue-400'>
+   Add to Cart
+    </button>
+
     </Card>
   );
 }

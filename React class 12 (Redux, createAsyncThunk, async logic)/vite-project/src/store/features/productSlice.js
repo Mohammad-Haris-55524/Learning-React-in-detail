@@ -1,25 +1,3 @@
-// import { createSlice } from '@reduxjs/toolkit'
-
-// const initialState = {
-//   isloading: false,
-//   error: "",
-//   products: []
-// }
-
-// export const userSlice = createSlice({
-//   name: 'user',
-//   initialState: initialState,
-//   extraReducers: {
-   
-//   },
-// })
-
-// // Action creators are generated for each case reducer function
-// export const {  } = counterSlice.actions
-
-// export default counterSlice.reducer
-
-// productSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
