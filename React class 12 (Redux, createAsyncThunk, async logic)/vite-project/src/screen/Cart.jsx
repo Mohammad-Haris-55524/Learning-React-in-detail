@@ -10,6 +10,15 @@ console.log(id)
     <>
     <Header/>
     <h1>Cart</h1>
+    {/* {product.map((item) => {
+        return <div>
+          <h1>Item Id: {item.id}</h1>
+          <h1>Item Name: {item.title}</h1>
+          <h1>Item Price: {item.price}</h1>
+         
+
+        </div>
+      })} */}
     </>
   )
 }

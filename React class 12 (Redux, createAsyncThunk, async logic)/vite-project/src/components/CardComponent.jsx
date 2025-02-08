@@ -2,9 +2,12 @@ import React from 'react';
 import CartBtn from './AddToCart';
 import { Card } from 'antd';
 import { Link, useNavigate,  } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../store/features/cartSlice';
 
 function CardComponent({ product, isLoading }) {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { Meta } = Card;
 
   const passingProductAndProductIdrToProductDetailComponentHandler = () => {
@@ -15,6 +18,7 @@ function CardComponent({ product, isLoading }) {
 
   const passingProductAndProductToCartComponentHandler = () => {
     console.log("Product for cart component ", product)
+    dispatch(addItemToCart(product))
     navigate(`/cart/${product.id}?title${product.title}&product_Id${product.id}`, {state:{product: product}})
   }
   return (
