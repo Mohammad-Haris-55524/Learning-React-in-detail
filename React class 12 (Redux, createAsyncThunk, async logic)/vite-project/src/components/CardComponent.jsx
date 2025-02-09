@@ -1,5 +1,4 @@
 import React from 'react';
-import CartBtn from './AddToCart';
 import { Card } from 'antd';
 import { Link, useNavigate,  } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -9,7 +8,8 @@ function CardComponent({ product, isLoading }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { Meta } = Card;
-
+  const {id} = product
+  
   const passingProductAndProductIdrToProductDetailComponentHandler = () => {
     // Passing single product detail to product detail page so we could show it on UI.
     console.log("Product for product detail component", product)
@@ -18,8 +18,8 @@ function CardComponent({ product, isLoading }) {
 
   const passingProductAndProductToCartComponentHandler = () => {
     console.log("Product for cart component ", product)
-    dispatch(addItemToCart(product))
-    navigate(`/cart/${product.id}?title${product.title}&product_Id${product.id}`, {state:{product: product}})
+    dispatch(addItemToCart({product,id}))
+    // navigate(`/cart/${product.id}?title${product.title}&product_Id${product.id}`, {state:{product: product}})
   }
   return (
     <Card
