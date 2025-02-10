@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { Link, useNavigate,  } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../store/features/cartSlice';
+import { addItemToCart, increaseProductQuantity } from '../store/features/cartSlice';
 
 function CardComponent({ product, isLoading }) {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ function CardComponent({ product, isLoading }) {
 
   const passingProductAndProductToCartComponentHandler = () => {
     console.log("Product for cart component ", product)
-    dispatch(addItemToCart({product,id}))
+    dispatch(addItemToCart({...product, quantity: 1}))
     // navigate(`/cart/${product.id}?title${product.title}&product_Id${product.id}`, {state:{product: product}})
   }
   return (
