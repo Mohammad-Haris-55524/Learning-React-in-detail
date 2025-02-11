@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 function Header() {
+  const cartItems = useSelector((state) => state.cart.cart);
+
   return (
     <div className="flex justify-between items-center p-4 bg-indigo-200">
       <div className="text-2xl font-serif font-extrabold text-green-700 underline">
@@ -18,7 +21,7 @@ function Header() {
           </li>
 
           <li className="text-lg font-serif text-blue-700 hover:text-blue-900">
-            <Link to={"/cart"}>Cart</Link>
+            <Link to={"/cart"}>Cart ({cartItems.length})</Link>
           </li>
 
           <li className="text-lg font-serif text-blue-700 hover:text-blue-900">

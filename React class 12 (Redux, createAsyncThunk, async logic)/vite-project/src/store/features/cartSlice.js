@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import PopUpMessage from "../../components/PopUpMessage";
+import PopUpMessage from "../../components/ModalComponent";
 const initialState = {
   cart: [],
 };

@@ -1,22 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decreaseProductQuantity, increaseProductQuantity, clearAllCartItems } from "../store/features/cartSlice";
-
-import PopUpMessage from "../components/PopUpMessage";
-import { Link } from "react-router-dom";
+import { decreaseProductQuantity, increaseProductQuantity} from "../store/features/cartSlice";
+import ModalComponent from "../components/ModalComponent"
+import MessageComponent from "../components/MessageComponent";
 
 function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
-  const [showComponent, setShowComponent] = useState(false)
 
   //Here we are calculating the total cost of all the items present in the cart 
   const totalPrice = cartItems.reduce((acc, product) => acc + product.price * product.quantity, 0);
-
-  // const clearAllCartItemHandler = () => {
-  //   setShowComponent(true)
-  //   showComponent && <PopUpMessage/>
-  // }
 
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg">
@@ -79,11 +72,9 @@ function Cart() {
       )}
 
       <div>
-        <button onClick={()=>setShowComponent(!showComponent)}>{showComponent && <PopUpMessage/>}Click to empty cart</button>
-        {/* <button onClick={<PopUpMessage/>}>Clear all cart item</button> */}
-
-
+        {cartItems.length > 0 && <button><ModalComponent cartItems={cartItems}/></button> }
       </div>
+    
     </div>
     
   );
