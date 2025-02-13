@@ -1,13 +1,19 @@
 import React from 'react';
 import { Button, message, Space } from 'antd';
+import { useSelector } from 'react-redux';
 
-function MessageComponent() {
-
+function MessageComponent({id}) {
+  const cartItems = useSelector((state) => state.cart.cart);
     const [messageApi, contextHolder] = message.useMessage();
+
+  // console.log(id)
+    const product = cartItems.find((product)=> product.id === id)
+    console.log(product)
+
     const success = () => {
       messageApi.open({
         type: 'success',
-        content: 'This is a success message',
+        content: 'Product has been added to cart successfully',
       });
     };
     const error = () => {
@@ -28,8 +34,8 @@ function MessageComponent() {
       {contextHolder}
       <Space>
         <Button onClick={success}>Success</Button>
-        <Button onClick={error}>Error</Button>
-        <Button onClick={warning}>Warning</Button>
+        {/* <Button onClick={error}>Error</Button>
+        <Button onClick={warning}>Warning</Button> */}
       </Space>
     </>
   )
