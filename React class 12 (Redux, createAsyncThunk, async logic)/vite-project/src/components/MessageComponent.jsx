@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, message, Space } from 'antd';
-import { useSelector } from 'react-redux';
 
 function MessageComponent({id}) {
-  const cartItems = useSelector((state) => state.cart.cart);
     const [messageApi, contextHolder] = message.useMessage();
 
-  // console.log(id)
-    const product = cartItems.find((product)=> product.id === id)
-    console.log(product)
+  console.log(id)
 
     const success = () => {
       messageApi.open({
@@ -23,20 +19,24 @@ function MessageComponent({id}) {
       });
     };
     const warning = () => {
+      // if(product){
       messageApi.open({
         type: 'warning',
-        content: 'This is a warning message',
+        content: 'Product already added to cart',
       });
+    // }
     };
     
   return (
     <>
       {contextHolder}
-      <Space>
-        <Button onClick={success}>Success</Button>
-        {/* <Button onClick={error}>Error</Button>
-        <Button onClick={warning}>Warning</Button> */}
-      </Space>
+     <Button type='primary'
+     className='mt-2'
+     onClick={id ? warning : success}>
+      Add to Cart
+      </Button>
+  
+    
     </>
   )
 }

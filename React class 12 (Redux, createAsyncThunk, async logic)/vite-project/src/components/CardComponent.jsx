@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from 'antd';
 import { Link, useNavigate,  } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -6,6 +6,7 @@ import { addItemToCart, increaseProductQuantity } from '../store/features/cartSl
 import MessageComponent from './MessageComponent';
 
 function CardComponent({ product, isLoading }) {
+  const [passId, setPassId] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { Meta } = Card;
@@ -20,6 +21,10 @@ function CardComponent({ product, isLoading }) {
   const passingProductAndProductToCartComponentHandler = () => {
     console.log("Product for cart component ", product)
     dispatch(addItemToCart({...product, quantity: 1}))
+    console.log(id)
+      setPassId(id)
+  //   if(id !== undefined){
+  // }
     
     // navigate(`/cart/${product.id}?title${product.title}&product_Id${product.id}`, {state:{product: product}})
   }
@@ -55,9 +60,8 @@ function CardComponent({ product, isLoading }) {
     </Link>  */}
 
 
-  <button onClick={passingProductAndProductToCartComponentHandler}
-     className='bg-blue-500 px-4 py-1 mt-4 text-white  rounded-md w-max hover:bg-blue-400'>
-    <MessageComponent id={product.id}/>
+  <button  onClick={passingProductAndProductToCartComponentHandler}>
+    <MessageComponent id={passId}/>
     </button>
 
     </Card>

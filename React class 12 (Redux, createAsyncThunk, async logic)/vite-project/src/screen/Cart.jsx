@@ -42,7 +42,7 @@ function Cart() {
                 <td className="p-4 border border-gray-300 dark:border-gray-600">
                   <div className="flex items-center justify-center space-x-3">
                     <button
-                      onClick={() => dispatch(decreaseProductQuantity(item.id))}
+                      onClick={() => (item.quantity > 0) && dispatch(decreaseProductQuantity(item.id))}
                       className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition"
                     >
                       -
@@ -57,7 +57,7 @@ function Cart() {
                   </div>
                 </td>
                 <td className="p-4 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white">
-                  Rs: {item.quantity * item.price}
+                  Rs: {(item.quantity * item.price).toFixed(2)}
                 </td>
               </tr>
             ))}
@@ -67,7 +67,7 @@ function Cart() {
 
       {cartItems.length > 0 && (
         <div className="mt-6 text-right">
-          <h2 className="text-xl font-bold text-gray-800 dark:text-white">Total Price: Rs {totalPrice}</h2>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-white">Total Price: Rs {totalPrice.toFixed(2)}</h2>
         </div>
       )}
 
