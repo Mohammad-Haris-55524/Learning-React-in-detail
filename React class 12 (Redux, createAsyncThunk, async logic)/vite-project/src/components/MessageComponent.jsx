@@ -22,7 +22,7 @@ function MessageComponent({id}) {
       // if(product){
       messageApi.open({
         type: 'warning',
-        content: 'Product already added to cart',
+        content: 'Product quantity has been increased because product is already present in the cart',
       });
     // }
     };

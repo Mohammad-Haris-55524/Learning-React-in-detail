@@ -4,10 +4,11 @@ import { decreaseProductQuantity, increaseProductQuantity} from "../store/featur
 import ModalComponent from "../components/ModalComponent"
 import MessageComponent from "../components/MessageComponent";
 
+
 function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
-
+console.log(cartItems)
   //Here we are calculating the total cost of all the items present in the cart 
   const totalPrice = cartItems.reduce((acc, product) => acc + product.price * product.quantity, 0);
 

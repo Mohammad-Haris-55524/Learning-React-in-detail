@@ -20,12 +20,11 @@ function CardComponent({ product, isLoading }) {
 
   const passingProductAndProductToCartComponentHandler = () => {
     console.log("Product for cart component ", product)
-    dispatch(addItemToCart({...product, quantity: 1}))
+    // For Logic # 01 (Check cart slice in reducers)
+    // dispatch(addItemToCart({...product, quantity: 1}))
+    dispatch(addItemToCart(product))
     console.log(id)
-      setPassId(id)
-  //   if(id !== undefined){
-  // }
-    
+    setPassId(id)
     // navigate(`/cart/${product.id}?title${product.title}&product_Id${product.id}`, {state:{product: product}})
   }
   return (
