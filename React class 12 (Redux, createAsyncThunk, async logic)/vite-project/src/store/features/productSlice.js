@@ -9,14 +9,27 @@ const initialState = {
 };
 
 // Async thunk to fetch products
-export const fetchProducts = createAsyncThunk(
-  'products/fetchProducts',
-  async () => {
-    const response = await axios.get('https://fakestoreapi.com/products');
-    return response.data;
-  }
-);
+// export const fetchProducts = createAsyncThunk(
+//   'products/fetchProducts',
+//   async () => {
+//     const response = await axios.get('https://fakestoreapi.com/products');
+//     return response.data;
+//   }
+// );
 
+// const fetchProducts = createAsyncThunk(
+//   'products/fetchProducts',
+//   async()=>{
+//     try{
+//     const response = await axios.get('https://fakestoreapi.com/products');
+//     return response.data
+//   }
+//   catch(err){
+//     return err
+//   }
+
+//   }
+// )
 // Create slice
 export const productSlice = createSlice({
   name: 'products',
@@ -36,6 +49,7 @@ export const productSlice = createSlice({
         state.error = action.error.message;
       });
   },
+
 });
 
 export default productSlice.reducer;
