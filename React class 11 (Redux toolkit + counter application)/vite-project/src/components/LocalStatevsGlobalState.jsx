@@ -1,17 +1,24 @@
-// import React from 'react'
+import React from 'react'
+import LocalStatevsGlobalStateImage1 from '../assets/localvsglobalstate.png'
+import LocalStatevsGlobalStateImage2 from '../assets/LocalvsReduxState(gobalState).png'
+function LocalStatevsGlobalState() {
+  return (
+    <>
+    <div>Local State vs Global State</div>
+    <img src={LocalStatevsGlobalStateImage1} alt="" />
+    <img src={LocalStatevsGlobalStateImage2} alt="" />
 
-// function LocalStatevsGlobalState() {
-//   return (
-//     <div>LocalStatevsGlobalState</div>
-//     <img src={} alt="" />
-//   )
-// }
+    </>
+  )
+}
 
-// export default LocalStatevsGlobalState
+export default LocalStatevsGlobalState
 
-
+// Topic # 01
 // Difference Between Local State and Redux Toolkit Global State
-// In React, state means storing and managing data that changes over time. Let’s compare local state and global state (Redux Toolkit) in simple terms with examples.
+
+// In React, state means storing and managing data that changes over time. Let’s compare local state and global state (Redux Toolkit) in simple
+//  terms with examples.
 
 // Local State (React State)
 // Local state is like keeping things in your room. Only you can use them.
@@ -120,3 +127,100 @@
 // // In Short:
 // // Use Local State for simple things like input forms or counters.
 // // Use Redux Toolkit when many components need to share the same data, like a shopping cart, user login, or theme settings.
+
+
+// Topic # 02
+// 📝 Can We Mutate State in Local State and Redux Toolkit?
+
+// What is State Mutation?
+// State mutation means directly changing the state value without using proper methods.
+
+// For example:
+// state = 5;  // ❌ Direct mutation (Wrong)
+// state.value = 10;  // ❌ Direct mutation (Wrong)
+
+
+// 🔹 1. Local State (useState) and Mutation
+// In local state (useState), we should NOT mutate the state directly, because React won’t detect the change and won’t re-render the component.
+
+// ❌ Wrong Way (Mutating the State Directly):
+// import { useState } from "react";
+
+// function Counter() {
+//   const [count, setCount] = useState(0);
+
+//   const increaseWrong = () => {
+//     count = count + 1; // ❌ Direct Mutation (React won’t re-render)
+//   };
+
+//   return (
+//     <div>
+//       <h1>Count: {count}</h1>
+//       <button onClick={increaseWrong}>Increase (Wrong)</button>
+//     </div>
+//   );
+// }
+// 🛑 Problem: React won’t update the screen because it doesn’t know the state has changed.
+
+// ✅ Correct Way (Using setState):
+// import { useState } from "react";
+
+// function Counter() {
+//   const [count, setCount] = useState(0);
+
+//   const increaseCorrect = () => {
+//     setCount(count + 1); // ✅ Correct (React re-renders)
+//   };
+
+//   return (
+//     <div>
+//       <h1>Count: {count}</h1>
+//       <button onClick={increaseCorrect}>Increase (Correct)</button>
+//     </div>
+//   );
+// }
+// ✅ React will re-render because we used setState.
+
+
+
+
+// 🔹 2. Redux Toolkit and Mutation
+
+// In Redux, we should never directly mutate the state, but Redux Toolkit is special because it uses a library called Immer that allows us to write code that looks like mutation but works immutably behind the scenes.
+
+// 🛑 Redux Without Toolkit (Cannot Mutate State):
+// In classic Redux (without Toolkit), you must return a new object manually:
+
+// // Classic Redux (without Toolkit)
+// function cartReducer(state = { items: 0 }, action) {
+//     switch (action.type) {
+//       case "ADD_ITEM":
+//         return { ...state, items: state.items + 1 }; // ✅ Return new object
+//       default:
+//         return state;
+//     }
+//   }
+
+  
+//   ✅ Redux Toolkit (Looks Like Mutation but is Not):
+//   In Redux Toolkit, we write simple code that looks like mutation, but Immer automatically converts it to immutable updates.
+//   import { createSlice } from "@reduxjs/toolkit";
+
+// const cartSlice = createSlice({
+//   name: "cart",
+//   initialState: { items: 0 },
+//   reducers: {
+//     addItem: (state) => {
+//       state.items += 1; // ✅ Looks like mutation, but it's not (thanks to Immer)
+//     },
+//   },
+// });
+
+// export const { addItem } = cartSlice.actions;
+// export default cartSlice.reducer;
+
+// 🛡️ Redux Toolkit uses Immer to handle the mutation safely. It creates a new state object under the hood.
+
+// 💡 In Short:
+// In Local State, you must never mutate directly, always use setState().
+// In Redux Toolkit, you can write code that looks like mutation, but Immer keeps it safe and immutable under the hood.
