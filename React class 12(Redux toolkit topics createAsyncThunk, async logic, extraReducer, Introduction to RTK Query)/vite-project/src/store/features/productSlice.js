@@ -1,4 +1,5 @@
 import { createAsyncThunk} from '@reduxjs/toolkit'
+// extraReducers kia hoty han ?
 
 export const fetchProducts = {
     

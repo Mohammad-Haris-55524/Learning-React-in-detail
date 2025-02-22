@@ -36,6 +36,8 @@ const decrementHandler = () =>{
 // For input fields
   const incrementByAmountHandler = () =>{
     if(inputValue !== undefined && inputValue !== null && inputValue > 0 ){
+// Payload Kya Hota Hai?
+// Payload ek extra data hota hai jo action ke sath bheja jata hai, taki counterSlice my mojodd reducer us data ko use kar sake.
       dispatch(incrementByAmount(inputValue))
       setErrorMessage(false)
     }
