@@ -1,18 +1,30 @@
 import { createAsyncThunk} from '@reduxjs/toolkit'
 // extraReducers kia hoty han ?
 
-export const fetchProducts = {
-    
- 
-}
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async()=>{
+  const response = await fetch('https://fakestoreapi.in/api/products')
 
-export const productSlice = createAsyncThunk({
+})
+
+export const productSlice = createSlice({
   name: 'products',
-//   initialState,
-  extraReducers:{
-    
-  },
   reducers: {},
+  // initialState,
+  initialState: { users: [], status: "idle", error: null },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUsers.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.users = action.payload;
+      })
+      .addCase(fetchUsers.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+  },
 })
 
 // Action creators are generated for each case reducer function
@@ -21,6 +33,7 @@ export const productSlice = createAsyncThunk({
 export default productSlice.reducer
 
 
+// ------------------------------------ Brief detail about the difference between Reducer vs ExtraReducers ------------------------------------
 
 // Reducer aur extraReducer React Redux Toolkit (RTK) mein state management ke liye use hote hain. Chalo in dono ko simple aur step-by-step samajhte hain.
 
