@@ -1,27 +1,42 @@
 import { createAsyncThunk} from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+import { useEffect } from 'react';
 // extraReducers kia hoty han ?
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async()=>{
   const response = await fetch('https://fakestoreapi.in/api/products')
+  const data = await response.json()
+    console.log(data)
+    // return data
+  // try{
+  //   console.log(data)
+  //   return data
+
+  // }
+  // catch(err){
+  //   console.log(err)
+  // }
 
 })
+
+
 
 export const productSlice = createSlice({
   name: 'products',
   reducers: {},
   // initialState,
-  initialState: { users: [], status: "idle", error: null },
+  initialState: { products: [], isLoading: false, error: null },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.pending, (state) => {
-        state.status = "loading";
+      .addCase(fetchProducts.pending, (state) => {
+        state.isLoading = "loading";
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.users = action.payload;
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.isLoading = "succeeded";
+        state.products = action.payload;
       })
-      .addCase(fetchUsers.rejected, (state, action) => {
-        state.status = "failed";
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.isLoading = "failed";
         state.error = action.error.message;
       });
   },
@@ -43,7 +58,6 @@ export default productSlice.reducer
 // Example: Counter Reducer
 // Agar hum ek simple counter ka example lein, toh usmein reducer ka kaam state update karna hoga.
 
-import { createSlice } from "@reduxjs/toolkit";
 
 // const counterSlice = createSlice({
 //   name: "counter",
