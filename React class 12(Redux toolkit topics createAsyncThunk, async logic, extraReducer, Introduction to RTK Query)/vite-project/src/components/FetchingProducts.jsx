@@ -1,18 +1,36 @@
-import React, { useEffect } from 'react'
-import { useDispatch , useSelector } from 'react-redux'
-import {fetchProducts} from '../store/features/productSlice'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../store/features/productSlice';
+
 function FetchingProducts() {
-    const dispatch = useDispatch()
-    const products = useSelector((state)=>state.products)
-    console.log(products)
+    const dispatch = useDispatch();
+    const { error, isLoading, products: { products } } = useSelector((state) => state.products);
 
     useEffect(() => {
-      dispatch(fetchProducts());
+        dispatch(fetchProducts());
     }, [dispatch]);
 
-  return (
-    <div>FetchingProducts</div>
-  )
+    if (isLoading) return <h1 className='flex justify-center items-center text-2xl font-bold'>Loading products ...</h1>;
+    if (error) return <h1 className='flex justify-center items-center text-red-500 text-2xl font-bold'>Error: {error}</h1>;
+
+    return (
+        <div className='container mx-auto p-6  bg-gray-100'>
+            <h1 className='text-center font-bold text-4xl mb-8'>Our Products</h1>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
+                {(products || []).map((product) => (
+                    <div key={product.id} className='bg-white shadow-lg rounded-lg overflow-hidden p-4 transition-transform transform hover:scale-105'>
+                        <img src={product.image} alt={product.title} className='w-full h-40 object-cover rounded-md' />
+                        <div className='mt-4'>
+                            <h2 className='text-lg font-semibold'>{product.title}</h2>
+                            <p className='text-gray-600 text-sm'>{product.brand}</p>
+                            <p className='text-gray-800 font-bold mt-2'>Rs {product.price}</p>
+                            <p className='text-gray-500 text-xs'>{product.category}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }
 
-export default FetchingProducts
+export default FetchingProducts;

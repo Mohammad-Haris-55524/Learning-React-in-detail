@@ -1,25 +1,22 @@
 import { createAsyncThunk} from '@reduxjs/toolkit'
 import { createSlice } from "@reduxjs/toolkit";
 import { useEffect } from 'react';
-// extraReducers kia hoty han ?
-
+// =====> By using Async await approach 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async()=>{
   const response = await fetch('https://fakestoreapi.in/api/products')
+  // const {products, status} = await response.json()
   const data = await response.json()
-    console.log(data)
-    // return data
-  // try{
-  //   console.log(data)
-  //   return data
-
-  // }
-  // catch(err){
-  //   console.log(err)
-  // }
-
+  try{
+    // console.log(products, status)
+    // return products
+    // console.log(data)
+     return data
+  }
+  catch(err){
+    // console.log(err.message)
+    return err
+  }
 })
-
-
 
 export const productSlice = createSlice({
   name: 'products',
@@ -29,15 +26,21 @@ export const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
-        state.isLoading = "loading";
+        // state.isLoading = "loading";
+        state.isLoading = true;
+
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.isLoading = "succeeded";
+        // state.isLoading = "succeeded";
+        state.isLoading = false
         state.products = action.payload;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
-        state.isLoading = "failed";
-        state.error = action.error.message;
+        // state.isLoading = "failed";
+        state.isLoading = false;
+        console.log(state.error) // null mily ga kiu ky error ki initial state ki value null hay
+        console.log(action.error.message) // error ky andar null ki jagah yah woh msg show kara dy ga jo hamey catch block sy mily ga jab API call my koi error aye ga 
+        state.error = action.error.message
       });
   },
 })

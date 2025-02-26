@@ -4,7 +4,7 @@ import FetchingProducts from './components/FetchingProducts'
 function App() {
   return (
 <>
-<img src={ReducervsExtraReduersImage} alt="" />
+{/* <img src={ReducervsExtraReduersImage} alt="" /> */}
 <FetchingProducts/>
 </>
   )
