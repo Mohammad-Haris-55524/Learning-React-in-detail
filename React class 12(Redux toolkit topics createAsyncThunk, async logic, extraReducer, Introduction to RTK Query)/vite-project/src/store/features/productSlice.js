@@ -160,3 +160,32 @@ export default productSlice.reducer
 // Bas ek chhoti cheez yaad rakhna: Reducers directly state ko mutate nahi karte, balki naya state return karte hain ya Redux Toolkit mein Immer.js ka use hota hai jo state ko safely modify karne ki permission deta hai.
 
 // Agar ab bhi koi confusion hai toh batao, main aur clear kar sakta hoon! 😊
+
+
+// _____________________________________________________________________________________________________________________________________________
+// 1 baat hamesha yaad rahkha ky REDUX TOOLKIT hamri REDUX ka hi advance version hay kiu ky jo ham phely REDUX use kar rahy hoty thy uss my jab
+// ham jab apna store create karwa rahy hoty thy jis function ky thorugh woh ab depreceate hogya hy or ab use my nahe raha. REDUX TOOLKIT my hamey
+// or bhe bhot assani hogaye hy ky jo hamey phely REDUX ky andar bhot sara BOILER PLATE sy realated code likhna parta tha woh ab REDUX TOOLKIT 
+// my nahe likhna parta kiu ky ab REDUX TOOLKIT woh sara kaam behind the scene khud kar rahe hoti hay.
+
+// Secondly jab ham phely REDUX use karty thy to jab hamey API CALLING karwani hoti the to ham uss time 1 alag library ka use karna parta tha 
+// REDUX ky andar by using libraries like ===> REDUX THUNK yah REDUX SAGA ky name sy. Lekin ab REDUX TOOLKIT ky andar hamey alag sy koi library 
+// install karwani nahe parti API CALLING ky liye  
+// _____________________________________________________________________________________________________________________________________________
+
+// const initialState = {
+// isLoading: false,
+// products: [],
+// error: null
+// }
+// createSlice({
+//   initialState,
+//   name:"products",
+// reducers:{},
+// extraReducers:(builder)=>{
+// builder.addCase = ()=>{
+
+// }
+// }
+// })
+ 
