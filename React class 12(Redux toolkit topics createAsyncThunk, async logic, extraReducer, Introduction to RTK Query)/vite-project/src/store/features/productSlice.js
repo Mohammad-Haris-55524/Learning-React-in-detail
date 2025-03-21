@@ -19,107 +19,104 @@ import { createSlice } from "@reduxjs/toolkit";
 //  ---------------------------------- Making an API CALL in redux tookit using createAsyncThunk (middleware) --------------------------------
 // ------------------------------------ Way # 01 (using fetch with then catch error handleing approach) --------------------------------------
 
-export const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
-  return fetch('https://fakestoreapi.in/api/products') // Here we are returning the result to fetchProducts function that we
-  // got in case of promise resolved from (then case) or rejection (from catch case due to error). We are using return so
-  // that we can access and use the values outside the function in extraReducers and can update our global state according
-  // to it. 
-  .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => data) // Returning the fetched data to function(fetchproduct) in case of promise is resolved
-    .catch(error => {
-      console.error('Error fetching products:', error);
-      throw error; // Returning the fetched to function (fetchproduct) error in case of promise is rejected
-    });
-});
+// export const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
+//   return fetch('https://fakestoreapi.in/api/products') // Here we are returning the result to fetchProducts function that we
+//   // got in case of promise resolved from (then case) or rejection (from catch case due to error). We are using return so
+//   // that we can access and use the values outside the function in extraReducers and can update our global state according
+//   // to it. 
+//   .then(response => {
+//       if (!response.ok) {
+//         throw new Error('Network response was not ok');
+//       }
+//       return response.json();
+//     })
+//     .then(data => data) // Returning the fetched data to function(fetchproduct) in case of promise is resolved
+//     .catch(error => {
+//       console.error('Error fetching products:', error);
+//       throw error; // Returning the fetched to function (fetchproduct) error in case of promise is rejected
+//     });
+// });
 
-const initialState = {
-  products: [],
-  error: '',
-  isLoading: false
-}
+// const initialState = {
+//   products: [],
+//   error: '',
+//   isLoading: false
+// }
 
-const productsSlice = createSlice({
-  initialState,
-  name:"products",
-  reducers:{},
-  extraReducers:(builder)=>{
-  builder.addCase(fetchProducts.pending, (state,action)=>{
-    state.isLoading = true
-  })
-  builder.addCase(fetchProducts.fulfilled, (state,action)=>{
-    state.isLoading = false // state my hamari initial states ki values hoti han jisy ham update karwa skty han 
-    // jab bhe global state my koi changes karwani ho to 
-    state.products = action.payload // action my woh data milta hay jo hamey createAsyncThunk(middleware) waly
-    //  function(fetchProducts) sy milta hay promise resolve(fullfilled) hony par yah phr promise reject(rejected) hony par
-    console.log(state,action)
-  })
-  builder.addCase(fetchProducts.rejected, (state,action)=>{
-    console.log(state,action) // action ki initial value my '' mily ga agar promise reject hogya to error message set 
-    // hogy ga (check line 480) jo hamey catch block sy mily ga while making API request in createAsyncThunk function.
-    state.isLoading = false
-    state.error = action.error.message
-  })
-}
-})
+// const productsSlice = createSlice({
+//   initialState,
+//   name:"products",
+//   reducers:{},
+//   extraReducers:(builder)=>{
+//   builder.addCase(fetchProducts.pending, (state,action)=>{
+//     state.isLoading = true
+//   })
+//   builder.addCase(fetchProducts.fulfilled, (state,action)=>{
+//     state.isLoading = false // state my hamari initial states ki values hoti han jisy ham update karwa skty han 
+//     // jab bhe global state my koi changes karwani ho to 
+//     state.products = action.payload // action my woh data milta hay jo hamey createAsyncThunk(middleware) waly
+//     //  function(fetchProducts) sy milta hay promise resolve(fullfilled) hony par yah phr promise reject(rejected) hony par
+//     console.log(state,action)
+//   })
+//   builder.addCase(fetchProducts.rejected, (state,action)=>{
+//     console.log(state,action) // action ki initial value my '' mily ga agar promise reject hogya to error message set 
+//     // hogy ga (check line 480) jo hamey catch block sy mily ga while making API request in createAsyncThunk function.
+//     state.isLoading = false
+//     state.error = action.error.message
+//   })
+// }
+// })
 
-export default productsSlice.reducer
+// export default productsSlice.reducer
 
 // -------------------------------- Way # 02 (using fetch Async and await catch error handleing approach) -------------------------------------
 
-// export const fetchProducts = createAsyncThunk('products/fetchProducts', async()=>{
-//   const response = await fetch('https://fakestoreapi.in/api/products')
-//   // const {products, status} = await response.json()
-//   const data = await response.json()
-//   try{
-//     // console.log(products, status)
-//     // return products
-//     // console.log(data)
-//      return data
-//   }
-//   catch(err){
-//     // console.log(err.message)
-//     return err
-//   }
-// })
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async()=>{
+  const response = await fetch('https://fakestoreapi.in/api/products')
+  // const {products, status} = await response.json()
+  const data = await response.json()
+  try{
+    // console.log(products, status)
+    // return products
+    // console.log(data)
+     return data
+  }
+  catch(err){
+    // console.log(err.message)
+    return err
+  }
+})
 
-// export const productSlice = createSlice({
-//   name: 'products',
-//   reducers: {},
-//   // initialState,
-//   initialState: { products: [], isLoading: false, error: null },
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(fetchProducts.pending, (state, action) => {
-//         // state.isLoading = "loading";
-//         state.isLoading = true;
+export const productSlice = createSlice({
+  name: 'products',
+  reducers: {},
+  // initialState,
+  initialState: { products: [], isLoading: false, error: null },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state, action) => {
+        // state.isLoading = "loading";
+        state.isLoading = true;
 
-//       })
-//       .addCase(fetchProducts.fulfilled, (state, action) => {
-//         // state.isLoading = "succeeded";
-//         state.isLoading = false // state my hamari initial states ki values hoti han jisy ham update karwa skty han 
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        // state.isLoading = "succeeded";
+        state.isLoading = false // state my hamari initial states ki values hoti han jisy ham update karwa skty han 
 // jab bhe global state my koi changes karwani ho to 
-//         state.products = action.payload; // action my woh data milta hay jo hamey createAsyncThunk(middleware) waly
+        state.products = action.payload; // action my woh data milta hay jo hamey createAsyncThunk(middleware) waly
 //  function(fetchProducts) sy milta hay promise resolve(fullfilled) hony par yah phr promise reject(rejected) hony par
-//       })
-//       .addCase(fetchProducts.rejected, (state, action) => {
-//         // state.isLoading = "failed";
-//         state.isLoading = false;
-//         console.log(state.error) // null mily ga kiu ky error ki initial state ki value null hay
-//         console.log(action.error.message) // error ky andar null ki jagah yah woh msg show kara dy ga jo hamey catch block sy mily ga jab API call my koi error aye ga 
-//         state.error = action.error.message
-//       });
-//   },
-// })
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        // state.isLoading = "failed";
+        state.isLoading = false;
+        console.log(state.error) // null mily ga kiu ky error ki initial state ki value null hay
+        console.log(action.error.message) // error ky andar null ki jagah yah woh msg show kara dy ga jo hamey catch block sy mily ga jab API call my koi error aye ga 
+        state.error = action.error.message
+      });
+  },
+})
 
-// Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
-// export default productSlice.reducer
+export default productSlice.reducer
 
 // --------------------------------------------------------------------------------------------------------------------------------------------
 

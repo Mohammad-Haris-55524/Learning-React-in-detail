@@ -7,8 +7,8 @@ function FetchingProducts() {
     // const { error, isLoading, products: { products } } = useSelector((state) => state.products);
     
 
-    // Getting data from way 1 of API calling in PRODUCTSLICE.JS FILE 
-    const {error, isLoading, products} = useSelector((state) => state.products);
+    // Getting data from WAY # 01 of API calling in PRODUCTSLICE.JS FILE 
+    const {error, isLoading, products: {products}} = useSelector((state) => state.products);
     console.log(error, isLoading , products)
 
     useEffect(() => {
@@ -26,6 +26,7 @@ function FetchingProducts() {
                     <div key={product.id} className='bg-white shadow-lg rounded-lg overflow-hidden p-4 transition-transform transform hover:scale-105'>
                         <img src={product.image} alt={product.title} className='w-full h-40 object-cover rounded-md' />
                         <div className='mt-4'>
+                            {console.log(product.image)}
                             <h2 className='text-lg font-semibold'>{product.title}</h2>
                             <p className='text-gray-600 text-sm'>{product.brand}</p>
                             <p className='text-gray-800 font-bold mt-2'>Rs {product.price}</p>
