@@ -1,6 +1,7 @@
 // src/components/ProductsList.js
 import React from 'react'
-import { useGetProductsQuery } from '../services/fakeStoreApi'
+import { useGetProductsQuery } from '../store/features/apiSlice'
+import AddProduct from './AddProduct'
 
 function ProductsList() {
   const { data: products, error, isLoading } = useGetProductsQuery()
@@ -20,6 +21,7 @@ function ProductsList() {
           </li>
         ))}
       </ul>
+      <AddProduct/>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 // src/components/AddProduct.js
 import React, { useState } from 'react'
-import { useAddProductMutation } from '../services/fakeStoreApi'
+import { useAddProductMutation } from '../store/features/apiSlice'
 
 function AddProduct() {
   const [addProduct, { isLoading, isSuccess, error }] = useAddProductMutation()
