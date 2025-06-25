@@ -1,5 +1,5 @@
 // // // Need to use the React-specific entry point to import createApi
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 // // Define a service using a base URL and expected endpoints
 // // export const pokemonApi = createApi({
@@ -66,33 +66,34 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 
 // src/services/fakeStoreApi.js
+// src/services/fakeStoreApi.js
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
 export const fakeStoreApi = createApi({
   reducerPath: 'fakeStoreApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com/' }),
-  tagTypes: ['Product'], // Add this line
+  tagTypes: ['Product'], // For cache invalidation
   endpoints: (builder) => ({
+    // GET all products
     getProducts: builder.query({
       query: () => 'products',
-      providesTags: ['Product'], // Add this to queries you want to refetch
+      providesTags: ['Product'] // This data can be tagged
     }),
     
-    // ... other endpoints ...
-
+    // POST new product
     addProduct: builder.mutation({
       query: (newProduct) => ({
         url: 'products',
         method: 'POST',
         body: newProduct
       }),
-      invalidatesTags: ['Product'], // Add this to invalidate cache
+      invalidatesTags: ['Product'] // This will refetch products
     }),
   }),
 })
 
+// Export hooks
 export const { 
   useGetProductsQuery,
-  useGetProductByIdQuery,
-  useGetProductsByCategoryQuery,
-  useGetCategoriesQuery,
   useAddProductMutation
 } = fakeStoreApi
